@@ -27,19 +27,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchSpeed;
     [SerializeField] float crouchYScale;
 
-    [Header("Shrink")]
+    /*[Header("Shrink")]
     [SerializeField] float shrinkXScale;
     [SerializeField] float shrinkYScale;
-    [SerializeField] float shrinkZScale;
-    float startXScale;
+    [SerializeField] float shrinkZScale;*/
+    //float startXScale;
     float startYScale;
-    float startZScale;
+    //float startZScale;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode shrinkKey = KeyCode.Z;
+    //[SerializeField] KeyCode shrinkKey = KeyCode.Z;
 
     [Header("Ground Check")]
     [SerializeField] float playerHeight;
@@ -78,9 +78,9 @@ public class PlayerMovement : MonoBehaviour
         
         readyToJump = true;
 
-        startXScale = transform.localScale.x;
+        //startXScale = transform.localScale.x;
         startYScale = transform.localScale.y;
-        startZScale = transform.localScale.z;
+        //startZScale = transform.localScale.z;
     }
 
     private void Update()
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-        if (Input.GetKeyDown(shrinkKey))
+        /*if (Input.GetKeyDown(shrinkKey))
         {
             shrunk = !shrunk;
             if (shrunk && state != MovementState.crouching)
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.localScale = new Vector3(startXScale, startYScale, startZScale);
             }
-        }
+        }*/
 
         // start crouch
         if (Input.GetKeyDown(crouchKey))
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                transform.localScale = new Vector3(transform.localScale.x, shrinkYScale, transform.localScale.z);
+                //transform.localScale = new Vector3(transform.localScale.x, shrinkYScale, transform.localScale.z);
             }
             
         }
