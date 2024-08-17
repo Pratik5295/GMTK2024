@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 814a1cda6e6881f46b9a1920fe6368aa, type: 3}
-  m_Name: Enemy
+  m_Name: Big
   m_EditorClassIdentifier: 
-  _enemyType: Basic
-  _health: 100
-  _speed: 3
-  _damageDealt: 1
+  _enemyType: 1
+  _health: 150
+  _speed: 2

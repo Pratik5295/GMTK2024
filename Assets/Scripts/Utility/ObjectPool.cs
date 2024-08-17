@@ -7,21 +7,14 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance {get; private set;}
 
     [Header("Enemies")]
-    private Dictionary<string, List<GameObject>> _enemyPools = new Dictionary<string, List<GameObject>>();
+    private Dictionary<EnemyType, List<GameObject>> _enemyPools = new Dictionary<EnemyType, List<GameObject>>();
     public List<EnemyPoolItem> _enemyPoolItems;
-    
-    //[Header("Bullets")]
-    // public List<GameObject> _pulledBullets = new List<GameObject>();
-    // public GameObject _bulletToPool;
-    // public int _amountOfBulletsToPool;
-
     private void Awake()
     {
         Instance = this;
     }
     private void InitializeAllPools()
     {
-        //InitializePool(_bulletToPool, _pulledBullets, _amountOfBulletsToPool);
         foreach(var item in _enemyPoolItems)
         {
             var poolList = new List<GameObject>();
@@ -33,11 +26,7 @@ public class ObjectPool : MonoBehaviour
     {
         InitializeAllPools();
     }
-    // public GameObject GetPooledBullet()
-    // {
-    //     return GetPooledObject(_bulletToPool, _pulledBullets, _amountOfBulletsToPool);
-    // }
-    public GameObject GetPooledEnemy(string enemyType)
+    public GameObject GetPooledEnemy(EnemyType enemyType)
     {
         if (_enemyPools.ContainsKey(enemyType))
         {
@@ -101,10 +90,17 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 }
+public enum EnemyType 
+{
+    Basic,
+    Big,
+    Fast,
+}
+
 [System.Serializable]
 public class EnemyPoolItem
 {
-    public string enemyType;
+    public EnemyType enemyType;
     public GameObject enemyPrefab;
     public int amountToPool;
 }

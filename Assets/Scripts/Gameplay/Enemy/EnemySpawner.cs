@@ -19,11 +19,13 @@ public class SecondEnemySpawner : MonoBehaviour
         if(_timer >= _timeToSpawnAnEnemy)
         {
             _timer = 0;
+            //chooses a random enemy to be spawned and one of the spawn positions on the list
             int randomEnemyIndex = Random.Range(0, _firstWave._enemiesList.Count);
             int randomSpawnIndex = Random.Range(0, _spawnPositions.Count);
             EnemySO chosenEnemy = _firstWave._enemiesList[randomEnemyIndex];
             Transform chosenSpawn = _spawnPositions[randomSpawnIndex];
 
+            //Pools the enemy from the ObjectPool
             GameObject enemyClone = ObjectPool.Instance.GetPooledEnemy(chosenEnemy._enemyType);
             if(enemyClone != null)
             {
