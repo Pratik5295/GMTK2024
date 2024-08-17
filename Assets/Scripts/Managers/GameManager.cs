@@ -59,4 +59,9 @@ public class GameManager : MonoBehaviour
         SetState(GameState.GAME);
         isPaused = false;
     }
+
+    public void BackToMainMenu()
+    {
+        SetState(GameState.DEFAULT);
+    }
 }

@@ -63,6 +63,11 @@ public class GameSceneManager : MonoBehaviour
     {
         switch(_state)
         {
+            case GameState.DEFAULT:
+                //Open the main menu up
+                LoadGameScene(SceneEnum.MENU);
+                break;
+
             case GameState.GAME:
 
                 //Start the game scene only if its a new game

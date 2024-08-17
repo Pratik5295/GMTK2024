@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenu : UIScreen
 {
-    public static MainMenuManager Instance = null;
+    public static MainMenu Instance = null;
 
     private void Awake()
     {
