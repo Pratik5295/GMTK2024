@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,24 +7,25 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private EnemySO _enemySO;
-    private GameObject _player;
+    [SerializeField] private float _walkRange;
+    [SerializeField] private LayerMask _ground;
 
-    #region Instance variables
+    private GameObject _player;
+    private LineOfSight _lineOfSight;
+    private Vector3 _positionToGoTo;
+    private bool _playerInAttackRange;
+    private bool _alreadyAttacked;
+    private bool _walkPointSet;
     private float _instanceHealth;
     private float _instanceSpeed;
-    private float _chaseTimer = 0;
-    private float _timeToChase = 1;
-    #endregion
+    private float _instanceTimeBetweenAttacks;
 
-    #region Getters and Setters
-    public EnemySO EnemySO {get{return _enemySO;}}
-    public float InstaceHealth{get{return _instanceHealth;} set{_instanceHealth = value;}}
-    public float InstanceSpeed{get{return _instanceSpeed;} set{_instanceSpeed = value;}}
-    #endregion
+
     public void SetupScriptableObject()
     {
         _instanceHealth = _enemySO._health;
         _instanceSpeed = _enemySO._speed;
+        _instanceTimeBetweenAttacks = _enemySO._timeBetweenAttacks;
     }
     private void OnEnable()
     {
@@ -32,27 +34,71 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     private void Start()
     {
         _player = GameObject.FindWithTag(IStringDefinitions.PLAYER_TAG);
+        _lineOfSight = GetComponent<LineOfSight>();
         SetupScriptableObject();
     }
     private void Update()
     {
-        _chaseTimer += Time.deltaTime;
-        if(_player != null)
+        if(!_playerInAttackRange && !IsPlayerWithinView()) Patrol();
+        if(IsPlayerWithinView() && !_playerInAttackRange) Chase();
+        if(IsPlayerWithinView() && _playerInAttackRange) Attack();
+    }
+    private void Patrol()
+    {
+        if (!_walkPointSet) SetWalkPosition();
+        if (_walkPointSet) _agent.SetDestination(_positionToGoTo);
+
+        Vector3 distanceToWalkPoint = transform.position - _positionToGoTo;
+
+        //Walkpoint reached
+        if (distanceToWalkPoint.magnitude <= 1f)
         {
-            if(_chaseTimer >= _timeToChase)
-            {
-                Debug.Log("agent should chase player");
-                _chaseTimer = 0;
-                _agent.SetDestination(_player.transform.position);
-                if(!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
-                {
-                    Attack();
-                }
-            }
+            _walkPointSet = false;
+            _positionToGoTo = Vector3.zero;
         }
+    }
+    private void SetWalkPosition()
+    {
+        float randomZ = UnityEngine.Random.Range(-_walkRange, _walkRange);
+        float randomX = UnityEngine.Random.Range(-_walkRange, _walkRange);
+
+        _positionToGoTo = new Vector3(transform.position.x  + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if(Physics.Raycast(_positionToGoTo, -transform.up, 2f, _ground))
+        {
+            _walkPointSet = true;
+        }
+    }
+    private void Chase()
+    {
+        Debug.Log("chase being called");
+        _agent.SetDestination(_player.transform.position);
+
     }
     private void Attack()
     {
-        Debug.Log("implement attack logic");
+        //Make sure enemy doesn't move
+        _agent.SetDestination(transform.position);
+
+        transform.LookAt(_player.transform);
+
+        if (!_alreadyAttacked)
+        {
+            Debug.Log("implement attack");
+            _alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), _instanceTimeBetweenAttacks);
+        }
+    }
+    private void ResetAttack()
+    {
+        _alreadyAttacked = false;
+    }
+    private GameObject IsPlayerWithinView()
+    {
+        if(_lineOfSight.ObjectsWithingSensor.Count > 0)
+        {
+            return _lineOfSight.ObjectsWithingSensor[0];
+        }
+        return null;
     }
 }
