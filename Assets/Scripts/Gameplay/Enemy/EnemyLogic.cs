@@ -18,6 +18,8 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     private bool _walkPointSet;
     private float _instanceHealth;
     private float _instanceSpeed;
+    private float _instanceDamageDealt;
+    private float _instanceAttackDistance;
     private float _instanceTimeBetweenAttacks;
 
 
@@ -25,14 +27,18 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     {
         _instanceHealth = _enemySO._health;
         _instanceSpeed = _enemySO._speed;
+        _instanceDamageDealt = _enemySO._damageDealt;
+        _instanceAttackDistance = _enemySO._attackDistance;
         _instanceTimeBetweenAttacks = _enemySO._timeBetweenAttacks;
     }
     private void OnEnable()
     {
+        _agent.stoppingDistance = _instanceAttackDistance;
         SetupScriptableObject();
     }
     private void Start()
     {
+        _agent.stoppingDistance = _instanceAttackDistance;
         _player = GameObject.FindWithTag(IStringDefinitions.PLAYER_TAG);
         _lineOfSight = GetComponent<LineOfSight>();
         SetupScriptableObject();
@@ -73,6 +79,14 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     {
         Debug.Log("chase being called");
         _agent.SetDestination(_player.transform.position);
+        if(_agent.remainingDistance <= _agent.stoppingDistance)
+        {
+            _playerInAttackRange = true;
+        } 
+        else 
+        {
+            _playerInAttackRange = false;
+        }
 
     }
     private void Attack()
@@ -84,7 +98,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
 
         if (!_alreadyAttacked)
         {
-            Debug.Log("implement attack");
+            Observer.Instance.EnemyAttack(_instanceDamageDealt, gameObject);
             _alreadyAttacked = true;
             Invoke(nameof(ResetAttack), _instanceTimeBetweenAttacks);
         }
@@ -92,6 +106,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     private void ResetAttack()
     {
         _alreadyAttacked = false;
+        _playerInAttackRange = false;
     }
     private GameObject IsPlayerWithinView()
     {
