@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 
+using TMPro;
 using UnityEngine;
 
 public class DamageGun : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
     [SerializeField] float timeBetweenShooting = 0f;
-    [SerializeField] float spread, range, reloadTime, timeBetweenShots;
-    [SerializeField] int magazineSize, bulletsPerTap;
+    [SerializeField] float spread = .05f, range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
+    [SerializeField] int magazineSize = 10, bulletsPerTap = 1;
+    [SerializeField] TMP_Text text;
     int bulletsLeft, bulletsShot;
 
 
@@ -19,13 +21,19 @@ public class DamageGun : MonoBehaviour
 
     [SerializeField] KeyCode reloadKey = KeyCode.R;
     //[SerializeField] Camera cam;
-    [SerializeField] Transform attackPoint;
+    [SerializeField] Transform gunBarrelTip;
     [SerializeField] RaycastHit rayHit;
-    [SerializeField] LayerMask whatIsEnemy;
+    //[SerializeField] LayerMask whatIsEnemy;
+
+    //Graphics
+    [SerializeField] GameObject muzzleFlash, bulletHoleGraphic;
+    CamShake camShake;
+    [SerializeField] float camShakeMagnitude = .15f, camShakeDuration = .45f;
 
     private void Start()
     {
         PlayerCamera = Camera.main.transform;
+        camShake = PlayerCamera.GetComponentInParent<CamShake>();
 
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -34,7 +42,9 @@ public class DamageGun : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(reloadKey) && bulletsLeft < magazineSize && !reloading) Reload();
-        
+
+        //Set Ammo Text
+        text.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
     }
 
     public void OnShoot()
@@ -72,6 +82,14 @@ public class DamageGun : MonoBehaviour
             }
 
         }
+
+        //ShakeCamera
+        camShake.Shake(camShakeDuration, camShakeMagnitude);
+
+        //Graphics
+        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
+
         bulletsLeft--;
         bulletsShot++;
         Invoke("ResetShot", timeBetweenShooting);
