@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 7245846219787871047}
+  showAtStart: 1
 --- !u!1001 &3707391139204702612
 PrefabInstance:
   m_ObjectHideFlags: 0

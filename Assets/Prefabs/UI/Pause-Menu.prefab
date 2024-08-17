@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 8335093689427520468}
+  showAtStart: 0
 --- !u!1 &336976590147122972
 GameObject:
   m_ObjectHideFlags: 0
