@@ -25,7 +25,6 @@ public class AudioManager : MonoBehaviour
     public void PlayBackground(AudioClip clip,float volume = 1f)
     {
         backgroundSource.clip = clip;
-        backgroundSource.volume = volume;
         backgroundSource.loop = true;
         backgroundSource.Play();
     }
