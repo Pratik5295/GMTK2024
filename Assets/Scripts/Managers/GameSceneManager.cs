@@ -77,11 +77,6 @@ public class GameSceneManager : MonoBehaviour
                 }
                 break;
 
-            case GameState.GAMEOVER:
-
-                LoadGameScene(SceneEnum.MENU);
-                break;
-
         }
     }
 
