@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement player;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
@@ -72,6 +74,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public float Speed => rb.velocity.magnitude;
+
+    private void Awake()
+    {
+        if(player != null)
+        {
+            player = this;
+        }
+    }
 
     private void Start()
     {
