@@ -52,12 +52,16 @@ public class GameManager : MonoBehaviour
     {
         SetState(GameState.PAUSED);
         isPaused = true;
+
+        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
         SetState(GameState.GAME);
         isPaused = false;
+
+        Time.timeScale = 1f;
     }
 
     public void BackToMainMenu()
