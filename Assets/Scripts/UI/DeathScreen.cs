@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static MetaConstants;
 
 [DefaultExecutionOrder(3)]
 public class DeathScreen : UIScreen
@@ -9,6 +10,8 @@ public class DeathScreen : UIScreen
     [SerializeField] private TextMeshProUGUI deathText;
 
     [SerializeField] private GameManager gameManager;
+
+    [SerializeField] private DeathCodes deathCode;
 
     private void Awake()
     {
@@ -52,9 +55,20 @@ public class DeathScreen : UIScreen
         }
     }
 
+    /// <summary>
+    /// Set this code prior to changing the game mode to game over
+    /// </summary>
+    /// <param name="_code"></param>
+    public void SetDeathCode(DeathCodes _code)
+    {
+        deathCode = _code;
+    }
+
     private void PopulateDeathScreen()
     {
         //Custom death message
+        string deathMessage = DeathMessages.GetDeathMessage(deathCode);
+        deathText.text = deathMessage; 
 
         Show();
     }
