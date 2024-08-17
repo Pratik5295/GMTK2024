@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Meelee", menuName = "ScriptableObjects/Enemy/Attacks/Meelee")]
 public class MeeleeAttack : AttackStategy
 {
+    private float _damageCaused;
     public override void Attack(Transform transform, MonoBehaviour monoBehaviour)
     {
         PerfomMeeleeAttack(transform);
@@ -18,6 +19,8 @@ public class MeeleeAttack : AttackStategy
         if(Physics.SphereCast(transform.position, attackRadius, transform.forward, out hit, attackDistance))
         {
             //Implement Damage Logic
+            PlayerHealth playerHealth = hit.collider.GetComponent<PlayerHealth>();
+            playerHealth.ReduceHealth(_damageCaused);
         }
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ProjectileMover : MonoBehaviour
 {
     [SerializeField] private float _speed = 10;
+    [SerializeField] private float damageCaused;
     [SerializeField] private Rigidbody _rb;
     private float _damage;
     private Vector3 _direction;
@@ -28,6 +29,9 @@ public class ProjectileMover : MonoBehaviour
         {
             Vector3 collisionNormal = other.contacts[0].normal;
             gameObject.SetActive(false);
+
+            PlayerHealth playerHealth = other.collider.GetComponent<PlayerHealth>();
+            playerHealth.ReduceHealth(damageCaused);
         }
     }
 }
