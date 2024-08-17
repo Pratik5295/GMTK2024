@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
         SetState(GameState.GAME);
     }
 
+    public void GameOver()
+    {
+        //Will be fired when the player has died
+        SetState(GameState.GAMEOVER);
+    }
+
     public void PauseGame()
     {
         SetState(GameState.PAUSED);
