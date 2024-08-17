@@ -7,6 +7,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private EnemySO _enemySO;
+    [SerializeField] private AttackStategy _attackStrategy;
     [SerializeField] private float _walkRange;
     [SerializeField] private LayerMask _ground;
 
@@ -98,7 +99,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
 
         if (!_alreadyAttacked)
         {
-            Observer.Instance.EnemyAttack(_instanceDamageDealt, gameObject);
+            _attackStrategy.Attack(transform, this);
             _alreadyAttacked = true;
             Invoke(nameof(ResetAttack), _instanceTimeBetweenAttacks);
         }

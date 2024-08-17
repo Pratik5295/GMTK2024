@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 2045771202418415967}
   _enemySO: {fileID: 11400000, guid: 0352f1e513abb4146b9da1b7e7a0018e, type: 2}
+  _attackStrategy: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
   _walkRange: 0
   _ground:
     serializedVersion: 2
