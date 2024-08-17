@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e55421c4c538c4c845dc9e94ec8b45, type: 3}
   m_Name: Projectile
   m_EditorClassIdentifier: 
+  _attackDistance: 5
+  _timeBetweenAttacks: 2

@@ -16,5 +16,5 @@ MonoBehaviour:
   _health: 100
   _speed: 3
   _damageDealt: 1
-  _attackDistance: 1
+  _attackDistance: 5
   _timeBetweenAttacks: 2

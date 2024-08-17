@@ -24,15 +24,27 @@ public class SecondEnemySpawner : MonoBehaviour
             int randomSpawnIndex = Random.Range(0, _spawnPositions.Count);
             EnemySO chosenEnemy = _firstWave._enemiesList[randomEnemyIndex];
             Transform chosenSpawn = _spawnPositions[randomSpawnIndex];
-
+            
+            float offsetRange = 3;
+            float offsetX = Random.Range(-offsetRange, offsetRange);
+            float offsetZ = Random.Range(-offsetRange, offsetRange);
+            
             //Pools the enemy from the ObjectPool
             GameObject enemyClone = ObjectPool.Instance.GetPooledEnemy(chosenEnemy._enemyType);
             if(enemyClone != null)
             {
-                enemyClone.transform.position = chosenSpawn.transform.position;
+                enemyClone.transform.position = new Vector3(chosenSpawn.transform.position.x + offsetX, chosenSpawn.transform.position.y, chosenSpawn.transform.position.z + offsetZ);
                 enemyClone.transform.rotation = Quaternion.identity;
                 enemyClone.SetActive(true);
             } 
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        foreach(Transform t in _spawnPositions)
+        {
+            Gizmos.DrawSphere(t.position, 0.5f);
         }
     }
 }

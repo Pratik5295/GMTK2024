@@ -21,12 +21,12 @@ public class ObjectPool : MonoBehaviour
     private void InitializeAllPools()
     {
         InitializePool(_enemyProjectilesToPool, _pulledEnemyProjectile, _amountOfEnemyProjectilesToPool);
-        // foreach(var item in _enemyPoolItems)
-        // {
-        //     var poolList = new List<GameObject>();
-        //     InitializePool(item.enemyPrefab, poolList, item.amountToPool);
-        //     _enemyPools.Add(item.enemyType, poolList);
-        // }
+        foreach(var item in _enemyPoolItems)
+        {
+            var poolList = new List<GameObject>();
+            InitializePool(item.enemyPrefab, poolList, item.amountToPool);
+            _enemyPools.Add(item.enemyType, poolList);
+        }
     }
     private void Start()
     {

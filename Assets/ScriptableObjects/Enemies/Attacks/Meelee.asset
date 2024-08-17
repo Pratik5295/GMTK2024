@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b553600ae35d74c4a890ab872cbe7a01, type: 3}
   m_Name: Meelee
   m_EditorClassIdentifier: 
-  _boxColliders: []
+  _attackDistance: 2
+  _timeBetweenAttacks: 2
