@@ -10,7 +10,7 @@ public class UIScreen : MonoBehaviour,IScreen
     [SerializeField] 
     public bool isActive => screen != null? screen.activeSelf : gameObject.activeSelf;
 
-    private void Start()
+    public virtual void Start()
     {
         if (showAtStart)
         {
