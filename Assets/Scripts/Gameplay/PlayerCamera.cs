@@ -19,8 +19,8 @@ public class PlayerCamera : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;   
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;   
 
     }
 
@@ -37,11 +37,11 @@ public class PlayerCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
-        if (Input.GetKeyDown(KeyCode.CapsLock))
-        {
-            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = !Cursor.visible;
-        }
+        //if (Input.GetKeyDown(KeyCode.CapsLock))
+        //{
+        //    Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
+        //    Cursor.visible = !Cursor.visible;
+        //}
     }
 
 
