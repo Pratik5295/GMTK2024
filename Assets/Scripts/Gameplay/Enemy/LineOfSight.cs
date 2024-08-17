@@ -33,7 +33,6 @@ public class LineOfSight : MonoBehaviour
         _scanTimer -= Time.deltaTime;
         if(_scanTimer <= _scanInterval)
         {
-            Debug.Log("scan should be called");
             _scanTimer += _scanInterval;
             Scan();
         }
@@ -48,17 +47,14 @@ public class LineOfSight : MonoBehaviour
             GameObject obj = _colliders[i].gameObject;
             if(IsInSight(obj) || IsMakingTooMuchNoise(obj))
             {
-                Debug.Log("is in sight is true");
                 _objectsWithinSensor.Add(obj);
             }
         }
     }
     private bool IsMakingTooMuchNoise(GameObject obj)
     {
-        Debug.Log("making too much noise being called");
         if(obj.tag == IStringDefinitions.PLAYER_TAG)
         {
-            Debug.Log("making too much noise being called, obj has player tag");
             PlayerMovement playerMovement = obj.transform.parent.GetComponent<PlayerMovement>();
             float noiseCheck = 3;
             if(playerMovement.MoveSpeed > noiseCheck)
@@ -76,7 +72,6 @@ public class LineOfSight : MonoBehaviour
     }
     private bool IsInSight(GameObject obj)
     {
-        Debug.Log("is in sight being called, obj is: " + obj.name);
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 direction = dest - origin;
