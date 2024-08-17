@@ -12,9 +12,10 @@ public class CursorHandler : MonoBehaviour
         if(gameManager != null)
         {
             gameManager.OnStateChanged += OnGameStateChangedHandler;
+            OnGameStateChangedHandler(gameManager.State);
         }
 
-        OnGameStateChangedHandler(gameManager.State);
+        
     }
 
     private void OnDestroy()

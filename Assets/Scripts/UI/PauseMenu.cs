@@ -37,19 +37,26 @@ public class PauseMenu : UIScreen
 
     public void OnGameQuitToMainMenu()
     {
-        GameManager.Instance.BackToMainMenu();
+        Hide();
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.BackToMainMenu();
+
+        
     }
 
     public void PauseGame()
     {
-        GameManager.Instance.PauseGame();
+        if(GameManager.Instance != null) 
+            GameManager.Instance.PauseGame();
 
         Show();
     }
 
     public void ResumeGame()
     {
-        GameManager.Instance.ResumeGame();
+        if (GameManager.Instance != null)
+            GameManager.Instance.ResumeGame();
 
         Hide();
     }

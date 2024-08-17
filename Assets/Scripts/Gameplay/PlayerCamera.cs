@@ -20,8 +20,12 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         //Being handles in CursorHanlder.cs
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;   
+
+        if (GameManager.Instance == null)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
     }
 
@@ -40,11 +44,11 @@ public class PlayerCamera : MonoBehaviour
 
 
         //Being handles in CursorHanlder.cs
-        //if (Input.GetKeyDown(KeyCode.CapsLock))
-        //{
-        //    Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
-        //    Cursor.visible = !Cursor.visible;
-        //}
+        if (Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = !Cursor.visible;
+        }
     }
 
 
