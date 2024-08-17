@@ -6,13 +6,18 @@ using static MetaConstants;
 /// </summary>
 public static class MetaConstants
 {
+    #region Player Health System
+
+    public const float MaxPlayerHealth = 100f;
+
+    #endregion
+
     public enum DeathCodes
     {
         NORMAL = 0,
         STOMPED = 1,
         NOOB = 2,
         DESPERATE = 3
-
     }
 }
 
