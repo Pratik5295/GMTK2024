@@ -98,7 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBlob: {fileID: 0}
   blobMesh: {fileID: 0}
-  fullHpMat: {fileID: 2100000, guid: f1d0e9929f23ece4283b54e5d0c5a291, type: 2}
-  halfHpMat: {fileID: 2100000, guid: 983ec5c75b3f9e54999d87947c955752, type: 2}
-  emptyHpMat: {fileID: 2100000, guid: e2fde7b088284ec45a4b00f36657c7b5, type: 2}
-  defaultHpMat: {fileID: 2100000, guid: 3d666fc3d4e549c4386e8da7c9cac357, type: 2}
+  healthBlobMat: {fileID: 2100000, guid: 3d666fc3d4e549c4386e8da7c9cac357, type: 2}
+  health: 0

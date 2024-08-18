@@ -8,18 +8,26 @@ public class UIHealthHandler : MonoBehaviour
     [SerializeField] private MeshRenderer blobMesh;
 
     [Header("Health Blob Visualization Materials")]
-    [SerializeField] private Material fullHpMat;
-    [SerializeField] private Material halfHpMat;
-    [SerializeField] private Material emptyHpMat;
-    [SerializeField] private Material defaultHpMat;
+    [SerializeField] private Material healthBlobMat;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float health;
 
     private void Start()
     {
         healthBlob = GetComponent<GameObject>();
         blobMesh = GetComponent<MeshRenderer>();
 
-        blobMesh.material = fullHpMat;
+        blobMesh.material = healthBlobMat;
+    }
 
-        
+    private void Update()
+    {
+        healthBlobMat.SetFloat("_OverlayAmount", health);
+    }
+
+    public void SetHealth()
+    {
+
     }
 }
