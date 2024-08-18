@@ -24,6 +24,15 @@ public class DamageGun : MonoBehaviour
     [SerializeField] RaycastHit rayHit;
     [SerializeField] LayerMask whatIsEnemy;
 
+    [SerializeField] AmmoType currentAmmoType;
+
+    enum AmmoType
+    {
+        normal,
+        enlarge,
+        shrink
+    }
+
     //Graphics
     [SerializeField] GameObject muzzleFlash, bulletHoleGraphic;
     CamShake camShake;
@@ -84,7 +93,16 @@ public class DamageGun : MonoBehaviour
             Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag("Enemy"))
             {
-                rayHit.collider.gameObject.GetComponent<Entity>().Health -= damage;
+                if(currentAmmoType == AmmoType.normal)
+                    rayHit.collider.gameObject.GetComponent<Entity>().Health -= damage;
+                else if(currentAmmoType == AmmoType.enlarge)
+                {
+                    rayHit.collider.gameObject.GetComponent<Entity>().Enlarge(damage);
+                }
+                else if (currentAmmoType == AmmoType.shrink)
+                {
+
+                }
             }
 
         }

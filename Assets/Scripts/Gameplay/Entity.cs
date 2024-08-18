@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour
             //Debug.Log(health);
             if(health <= 0f)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
@@ -27,6 +27,17 @@ public class Entity : MonoBehaviour
     private void Start()
     {
         Health = StartingHealth;
+    }
+
+    public void Enlarge(float damage)
+    {
+        health -= damage;
+        if (health <= 0f)
+        {
+            gameObject.SetActive(false);
+        }
+
+        transform.localScale = transform.localScale * (1 + 1/damage);
     }
 
 }

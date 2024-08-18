@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2870be42e521ce4a89bf4f10281b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 5
+  StartingHealth: 10
 --- !u!1 &51915692
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2870be42e521ce4a89bf4f10281b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 1
+  StartingHealth: 4
 --- !u!1 &81131547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1517,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402499930}
   m_CullTransparentMesh: 1
+--- !u!1001 &1493509488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4499277650885194159, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499277650885194159, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5751739
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.050117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
 --- !u!1 &1561301728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2870be42e521ce4a89bf4f10281b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 2
+  StartingHealth: 6
 --- !u!1 &1903248947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,8 +2085,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2019204399}
     - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: reloadTime
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: currentAmmoType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: whatIsEnemy.m_Bits
@@ -2118,3 +2187,4 @@ SceneRoots:
   - {fileID: 1298320361}
   - {fileID: 1992910531}
   - {fileID: 81131550}
+  - {fileID: 1493509488}
