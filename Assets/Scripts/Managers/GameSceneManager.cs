@@ -77,6 +77,8 @@ public class GameSceneManager : MonoBehaviour
                 }
                 break;
 
+            default:
+                break;
         }
     }
 
