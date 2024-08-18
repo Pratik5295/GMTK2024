@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1883d38722ecba418416bc148b66ecf, type: 3}
-  m_Name: JumpAttack
+  m_Script: {fileID: 11500000, guid: 5941e87cc47e5a2409b1983c94c4e59d, type: 3}
+  m_Name: SecondWave
   m_EditorClassIdentifier: 
-  _attackDistance: 0
-  _timeBetweenAttacks: 0
-  _jumpForce: 0
+  _enemiesList: []
