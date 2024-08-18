@@ -7,7 +7,7 @@ using UnityEngine;
 public class MeeleeAttack : AttackStategy
 {
     private float _damageCaused;
-    public override void Attack(Transform transform, MonoBehaviour monoBehaviour)
+    public override void Attack(Transform transform, Transform player, MonoBehaviour monoBehaviour)
     {
         PerfomMeeleeAttack(transform);
     }
