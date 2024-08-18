@@ -9,19 +9,22 @@ public class Observer : MonoBehaviour
     {
         Instance = this;
     }
-    public class OnEnemyAttackEventArgs: EventArgs
+    public class OnEnemyVisualEventArgs: EventArgs
     {
-        public float DamageDealt;
         public GameObject Enemy;
-        public OnEnemyAttackEventArgs(float damageDealt, GameObject enemy)
+        public OnEnemyVisualEventArgs(GameObject enemy)
         {
             Enemy = enemy;
-            DamageDealt = damageDealt;
         }
     }
-    public event EventHandler<OnEnemyAttackEventArgs> OnEnemyAttack;
-    public void EnemyAttack(float damageDealt, GameObject enemy)
+    public event EventHandler<OnEnemyVisualEventArgs> OnEnemyAttack;
+    public event EventHandler<OnEnemyVisualEventArgs> OnEnemyChase;
+    public void EnemyAttack(GameObject enemy)
     {
-        OnEnemyAttack?.Invoke(this, new OnEnemyAttackEventArgs(damageDealt, enemy));
+        OnEnemyAttack?.Invoke(this, new OnEnemyVisualEventArgs(enemy));
+    }
+    public void EnemyChase(GameObject enemy)
+    {
+        OnEnemyChase?.Invoke(this, new OnEnemyVisualEventArgs(enemy));
     }
 }

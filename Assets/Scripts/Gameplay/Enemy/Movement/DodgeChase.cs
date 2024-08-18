@@ -5,68 +5,54 @@ using UnityEngine.AI;
 public class DodgeChase : MovementStrategy
 {
     public float _dodgeRange;
-    public float _dodgeCooldown;
+    public float _dodgeFrequency;
+    public float _dodgeSpeed;
 
-    private float _timer = 0;
-    private float _dashDuration;
-    private bool _canDodge;
+    private bool _canDodge = false;
+    private float _timer;
+    private float _originalSpeed;
     private Vector3 _directionToDodgeTo;
+
     public override void Move(NavMeshAgent agent, Transform player)
     {
+        _originalSpeed = agent.speed;
+        if(!_canDodge) agent.SetDestination(player.transform.position);
+        _timer += Time.deltaTime;
+        if(_timer >= _dodgeFrequency)
+        {
+            _canDodge = true;
+        }
         DodgeMovement(agent, player);
+
+        Vector3 distanceToWalkPoint = agent.transform.position - _directionToDodgeTo;
+        if(distanceToWalkPoint.magnitude < 1)
+        {
+            Debug.Log("agent reached dodge target, should go back to chasing player");
+            _canDodge = false;
+            _timer = 0;
+            agent.speed = _originalSpeed;
+        }
     }
     private void DodgeMovement(NavMeshAgent agent, Transform player)
     {
-        Debug.Log("dodge movement being called");
-        if(!_canDodge) agent.SetDestination(player.transform.position);
-        _timer += Time.deltaTime;
-        if(_timer >= _dodgeCooldown)
+        if(_canDodge && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Dodge(agent);
-            if(_canDodge)
-            {
-                agent.SetDestination(_directionToDodgeTo);
-                WaitForDashToEnd();
-            }
-        }
-    }
-    private void WaitForDashToEnd()
-    {
-        float dashTimer = 0;
-        dashTimer += Time.deltaTime;
-        if(dashTimer >= _dashDuration)
+            float randomZ = Random.Range(-_dodgeRange, _dodgeRange);
+            float randomX = Random.Range(-_dodgeRange, _dodgeRange);
+
+            _directionToDodgeTo = new Vector3(agent.transform.position.x + randomX, agent.transform.position.y, agent.transform.position.z + randomZ);
+            agent.SetDestination(_directionToDodgeTo);
+            agent.speed = _dodgeSpeed;
+        } else
         {
             _canDodge = false;
             _timer = 0;
         }
     }
-    private void Dodge(NavMeshAgent agent)
+    void OnDrawGizmos()
     {
-        Debug.Log("DODGE being called");
-        float randomX = Random.Range(-_dodgeRange, _dodgeRange);
-        float randomZ = Random.Range(-_dodgeRange, _dodgeRange);
-
-        _directionToDodgeTo = new Vector3(randomX, 0, randomZ);
-
-        RaycastHit hit;
-        Debug.DrawRay(agent.transform.position, _directionToDodgeTo, Color.red, 10);
-        if(Physics.Raycast(agent.transform.position, _directionToDodgeTo, out hit))
-        {
-            if(hit.collider.gameObject == null)
-            {
-                Debug.Log("hit didn't found anything" + hit.collider.gameObject);
-                _canDodge = true;
-            } 
-            else
-            {
-                Debug.Log("hit found something");
-                _canDodge = false;
-            
-            }
-        } else
-        {
-            Debug.Log("raycast didn't hit anything");
-            _canDodge = true;
-        }
+        Gizmos.color = Color.red;
+        float radius = 3f;
+        Gizmos.DrawWireSphere(_directionToDodgeTo, radius);
     }
 }
