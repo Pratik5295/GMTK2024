@@ -173,7 +173,7 @@ public class DamageGun : MonoBehaviour
 
             case AmmoType.normal:
                 {
-                    return "0";
+                    return "N";
                 }
 
             case AmmoType.enlarge:
