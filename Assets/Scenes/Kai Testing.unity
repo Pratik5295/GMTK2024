@@ -453,12 +453,17 @@ PrefabInstance:
       value: BigEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 1132342055306246343, guid: 748b69fb64e62c8449a255ea2775bc42, type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1132342055306246343, guid: 748b69fb64e62c8449a255ea2775bc42, type: 3}
       propertyPath: m_TagString
       value: Enemy
+=======
+      propertyPath: m_IsActive
+      value: 0
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7721228088519612326, guid: 748b69fb64e62c8449a255ea2775bc42, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1025,6 +1030,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3825358120704327059, guid: 57b949efb37e2f74f9dbae311c8df829, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825358120704327059, guid: 57b949efb37e2f74f9dbae311c8df829, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -1362,6 +1371,10 @@ PrefabInstance:
     - target: {fileID: 4499277650885194159, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499277650885194159, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4499277650885194159, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_TagString
@@ -1817,9 +1830,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4478094298981285728, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+<<<<<<< Updated upstream
       propertyPath: whatIsEnemy.m_Bits
       value: 1616
       objectReference: {fileID: 0}
+=======
+      propertyPath: magazineSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478094298981285728, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: whatIsEnemy.m_Bits
+      value: 1616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008927798374690360, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: Automatic
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 8200156010899136216, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: m_Name
       value: Camera Holder
