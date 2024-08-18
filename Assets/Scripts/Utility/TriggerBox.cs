@@ -9,11 +9,10 @@ public class TriggerBox : MonoBehaviour,ITriggerable
 
     private void OnTriggerEnter(Collider other)
     {
-        var collided = other.gameObject;
+        var collided = other.gameObject.transform.parent;
 
         if(collided.tag == "Player")
         {
-            Debug.Log("Collision deetected");
             FireTrigger();
         }
     }
