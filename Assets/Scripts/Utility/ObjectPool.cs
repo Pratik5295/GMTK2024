@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour
 
     [Header("Enemies")]
     private Dictionary<EnemyType, List<GameObject>> _enemyPools = new Dictionary<EnemyType, List<GameObject>>();
-    public List<EnemyPoolItem> _enemyPoolItems;
+    public List<EnemyPoolItem> _enemyPoolItems = new List<EnemyPoolItem>();
 
     [Header("Enemy Projectiles")]
     public List<GameObject> _pulledEnemyProjectile = new List<GameObject>();
@@ -16,7 +16,7 @@ public class ObjectPool : MonoBehaviour
     public int _amountOfEnemyProjectilesToPool;
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null) Instance = this;
     }
     private void InitializeAllPools()
     {

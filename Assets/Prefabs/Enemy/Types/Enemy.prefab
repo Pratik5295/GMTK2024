@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 6608729983348137890}
   - component: {fileID: 9077270099228007054}
   - component: {fileID: 245505314944994127}
-  - component: {fileID: 23970462916486167}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -143,9 +142,6 @@ MonoBehaviour:
   _enemySO: {fileID: 11400000, guid: 0352f1e513abb4146b9da1b7e7a0018e, type: 2}
   _movementStrategy: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}
   _attackStrategy: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &245505314944994127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,22 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 10
   scaleTiming: 0.3
-  enemyType: 1
---- !u!114 &23970462916486167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4499277650885194159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2870be42e521ce4a89bf4f10281b345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingHealth: 10
-  scaleTiming: 0.3
-  enemyType: 2
+  enemyType: 0
 --- !u!1 &4596247600986587793
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,4 +253,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae31b96754c15f45bfcfdd1480e452a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyAnimator: {fileID: 0}
