@@ -140,29 +140,10 @@ MonoBehaviour:
   _agent: {fileID: 2045771202418415967}
   _enemySO: {fileID: 11400000, guid: 0352f1e513abb4146b9da1b7e7a0018e, type: 2}
   _movementStrategy: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}
-<<<<<<< Updated upstream
   _attackStrategy: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128
-=======
-  _attackStrategy: {fileID: 11400000, guid: e15f2fe9e03ee914f9698e09fd3dbf28, type: 2}
---- !u!114 &245505314944994127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4499277650885194159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2870be42e521ce4a89bf4f10281b345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingHealth: 10
-  scaleTiming: 0.3
-  enemyType: 0
->>>>>>> Stashed changes
 --- !u!1 &4596247600986587793
 GameObject:
   m_ObjectHideFlags: 0

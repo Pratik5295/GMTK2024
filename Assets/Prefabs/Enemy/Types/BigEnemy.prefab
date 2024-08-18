@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: _attackStrategy
       value: 
-      objectReference: {fileID: 11400000, guid: e15f2fe9e03ee914f9698e09fd3dbf28, type: 2}
+      objectReference: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
