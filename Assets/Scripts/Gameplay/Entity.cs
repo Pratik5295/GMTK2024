@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
         }
         set
         {
+            if (enemyType != EnemyType.normal) return;
             health = value;
             //Debug.Log(health);
             if(health <= 0f)
@@ -36,7 +37,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
-        Health = StartingHealth;
+        health = StartingHealth;
     }
 
     public void Enlarge(float damage)

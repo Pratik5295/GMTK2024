@@ -647,7 +647,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   switchAmmoTypeKey: 102
-  FireCooldown: 1
+  FireCooldown: 0
   Automatic: 0
 --- !u!114 &2391509101257196261
 MonoBehaviour:
@@ -661,8 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3413d3e669519f40a3a4ee935f29dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  timeBetweenShooting: 0
+  damage: 2
+  timeBetweenShooting: 0.25
   spread: 0.05
   range: 50
   reloadTime: 1
