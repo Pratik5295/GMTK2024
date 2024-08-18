@@ -47,9 +47,9 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     }
     private void Update()
     {
-        if(Physics.SphereCast(transform.position, _instanceAttackDistance, transform.forward, out hit))
+        if (Physics.SphereCast(transform.position, _instanceAttackDistance, transform.forward, out hit))
         {
-            Debug.Log("physics check sphere");
+            
             if(hit.collider.gameObject.tag ==IStringDefinitions.PLAYER_TAG)
             {
                 Debug.Log("object collided with is player");
@@ -82,16 +82,18 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
             Debug.Log("enemy should attack");
             _attackStrategy.Attack(new AttackStategyParamethers(_agent, transform, _player.transform, this));
             Observer.Instance.EnemyAttack(gameObject);
-            StartCoroutine(ResetAttack(_instanceTimeBetweenAttacks));
+            _alreadyAttacked = true;
+            
+            Invoke("ResetAttack", _instanceTimeBetweenAttacks);
         }
     }
-    private IEnumerator ResetAttack(float attackCooldDown)
+
+    private void ResetAttack()
     {
-        _alreadyAttacked = true;
         Debug.Log("reset attack should be called");
-        yield return new WaitForSeconds(attackCooldDown);
         _alreadyAttacked = false;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

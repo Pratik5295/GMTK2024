@@ -30,7 +30,7 @@ public class ProjectileMover : MonoBehaviour
             Vector3 collisionNormal = other.contacts[0].normal;
             gameObject.SetActive(false);
 
-            PlayerHealth playerHealth = other.collider.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = other.collider.transform.parent.GetComponent<PlayerHealth>();
             playerHealth.ReduceHealth(damageCaused);
         }
     }
