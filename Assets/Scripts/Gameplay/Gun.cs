@@ -7,18 +7,22 @@ public class Gun : MonoBehaviour
 {
 
     [SerializeField] UnityEvent OnGunShoot;
+    [SerializeField] UnityEvent OnAltGunShoot;
     [SerializeField] UnityEvent OnAmmoTypeSwitched;
     [SerializeField] KeyCode switchAmmoTypeKey = KeyCode.F;
     [Tooltip("Firing cooldown in seconds")][SerializeField] float FireCooldown;
+[SerializeField] float altFireCooldown;
 
     
     [Tooltip("By default gun is semi")][SerializeField] bool Automatic;
 
     private float CurrentCooldown;
+    private float CurrentAltCooldown;
 
     void Start()
     {
         CurrentCooldown = FireCooldown;
+        CurrentAltCooldown = altFireCooldown;
     }
 
     void Update()
@@ -33,6 +37,14 @@ public class Gun : MonoBehaviour
                     CurrentCooldown = FireCooldown;
                 }
             }
+            if (Input.GetMouseButton(1))
+            {
+                if (CurrentAltCooldown <= 0f)
+                {
+                    OnAltGunShoot?.Invoke();
+                    altFireCooldown = FireCooldown;
+                }
+            }
         }
         else
         {
@@ -42,6 +54,14 @@ public class Gun : MonoBehaviour
                 {
                     OnGunShoot?.Invoke();
                     CurrentCooldown = FireCooldown;
+                }
+            }
+            if (Input.GetMouseButton(1))
+            {
+                if (CurrentAltCooldown <= 0f)
+                {
+                    OnAltGunShoot?.Invoke();
+                    altFireCooldown = FireCooldown;
                 }
             }
         }
