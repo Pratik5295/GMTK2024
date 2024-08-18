@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 10
+  scaleTiming: 0
   enemyType: 1
 --- !u!1 &51915692
 GameObject:
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 6
+  scaleTiming: 0
   enemyType: 0
 --- !u!1 &81131547
 GameObject:
@@ -528,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 10
+  scaleTiming: 0
   enemyType: 2
 --- !u!1 &364218015
 GameObject:
@@ -1099,6 +1102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 10
+  scaleTiming: 0
   enemyType: 1
 --- !u!1 &1298320357
 GameObject:
@@ -1433,6 +1437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 10
+  scaleTiming: 0.3
   enemyType: 0
 --- !u!1 &1561301728
 GameObject:
@@ -1658,6 +1663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 10
+  scaleTiming: 0
   enemyType: 2
 --- !u!1 &1992910527
 GameObject:
