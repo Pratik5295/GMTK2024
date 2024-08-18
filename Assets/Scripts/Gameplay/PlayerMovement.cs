@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] float sprintSpeed;
     float moveSpeed;
-
     [SerializeField] float groundDrag;
 
     [Header("Jumping")]
@@ -74,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public float Speed => rb.velocity.magnitude;
+    public float MoveSpeed { get { return moveSpeed; } }
 
     private void Awake()
     {
