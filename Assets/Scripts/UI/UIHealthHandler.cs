@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(4)]
 public class UIHealthHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Reference to Health Blob")]
+    [SerializeField] private GameObject healthBlob;
+    [SerializeField] private MeshRenderer blobMesh;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Health Blob Visualization Materials")]
+    [SerializeField] private Material fullHpMat;
+    [SerializeField] private Material halfHpMat;
+    [SerializeField] private Material emptyHpMat;
+    [SerializeField] private Material defaultHpMat;
+
+    private void Start()
     {
+        healthBlob = GetComponent<GameObject>();
+        blobMesh = GetComponent<MeshRenderer>();
+
+        blobMesh.material = fullHpMat;
+
         
     }
 }
