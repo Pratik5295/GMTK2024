@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement player;
+    public GameObject cameraPos;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
-    [SerializeField] Transform orientation;
+    public Transform orientation;
 
     float horizontalInput;
     float verticalInput;
