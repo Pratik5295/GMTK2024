@@ -1943,13 +1943,25 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1402499932}
+    - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: whatIsEnemy.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: timeBetweenShooting
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4965438261709640327, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 5509806888866304957, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
-      propertyPath: OnGunShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnShoot
+      propertyPath: FireCooldown
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5738456080911321149, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: m_LocalPosition.x

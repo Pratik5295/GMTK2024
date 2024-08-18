@@ -20,10 +20,9 @@ public class DamageGun : MonoBehaviour
     private Transform PlayerCamera;
 
     [SerializeField] KeyCode reloadKey = KeyCode.R;
-    //[SerializeField] Camera cam;
     [SerializeField] Transform gunBarrelTip;
     [SerializeField] RaycastHit rayHit;
-    //[SerializeField] LayerMask whatIsEnemy;
+    [SerializeField] LayerMask whatIsEnemy;
 
     //Graphics
     [SerializeField] GameObject muzzleFlash, bulletHoleGraphic;
@@ -49,19 +48,25 @@ public class DamageGun : MonoBehaviour
 
     public void OnShoot()
     {
+        Debug.Log("OnShoot");
         if (readyToShoot && !reloading && bulletsLeft > 0)
         {
+            bulletsShot = bulletsPerTap;
             Shoot();
+            
         }
     }
 
     void Shoot()
     {
+        Debug.Log("Shot");
         readyToShoot = false;
 
+        GameObject player = PlayerMovement.player.gameObject;
+
         //Spread
-        bool ifMoving = PlayerMovement.player.GetComponent<Rigidbody>().velocity.magnitude > 0;
-            
+        bool ifMoving = player.GetComponent<Rigidbody>().velocity.magnitude > 0;
+
         float tempSpread = ifMoving ? spread * 1.5f : spread;
 
         float x = Random.Range(-tempSpread, tempSpread);
@@ -70,15 +75,12 @@ public class DamageGun : MonoBehaviour
         //Calculate the spread direction
         Vector3 direction = PlayerCamera.forward + new Vector3(x, y, 0);
 
-        
-
-        Ray gunRay = new Ray(PlayerCamera.position, direction);
-        if (Physics.Raycast(gunRay, out RaycastHit hitInfo, range))
+        if (Physics.Raycast(PlayerCamera.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(hitInfo.collider.name);
-            if (hitInfo.collider.gameObject.TryGetComponent(out Entity enemy))
+            Debug.Log(rayHit.collider.name);
+            if (rayHit.collider.CompareTag("Enemy"))
             {
-                enemy.Health -= damage;
+                rayHit.collider.gameObject.GetComponent<Entity>().Health -= damage;
             }
 
         }
@@ -91,11 +93,10 @@ public class DamageGun : MonoBehaviour
         Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
 
         bulletsLeft--;
-        bulletsShot++;
+        bulletsShot--;
         Invoke("ResetShot", timeBetweenShooting);
 
         if (bulletsShot > 0 && bulletsLeft > 0)
-            bulletsShot = bulletsPerTap;
             Invoke("Shoot", timeBetweenShots);
     }
 

@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        if(player != null)
+        if(player == null)
         {
             player = this;
         }

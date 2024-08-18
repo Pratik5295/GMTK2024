@@ -192,7 +192,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2391509101257196261}
         m_TargetAssemblyTypeName: DamageGun, Assembly-CSharp
-        m_MethodName: Shoot
+        m_MethodName: OnShoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

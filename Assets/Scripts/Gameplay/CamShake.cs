@@ -9,7 +9,7 @@ public class CamShake : MonoBehaviour
         Vector3 originalPos = transform.localPosition;
 
         float elapsed = 0.0f;
-
+        Debug.Log("Camera Shake");
         while (elapsed < duration)
         {
             float x = Random.Range(-1f, 1f) * magnitude;
@@ -21,7 +21,7 @@ public class CamShake : MonoBehaviour
 
             yield return null;
         }
-
+        Debug.Log("Camera UnShake");
         transform.localPosition = originalPos;
     }
 }
