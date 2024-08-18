@@ -55,6 +55,10 @@ public class DamageGun : MonoBehaviour
             Shoot();
             
         }
+        else if (readyToShoot && !reloading && bulletsLeft == 0)
+        {
+            Reload();
+        }
     }
 
     void Shoot()

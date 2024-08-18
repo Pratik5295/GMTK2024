@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 44446336}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 51915697}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1376,7 +1376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1402499931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 1754152271}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1931,6 +1931,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2019204399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5730326175948221411, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+  m_PrefabInstance: {fileID: 2023073645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2023073645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1942,7 +1953,7 @@ PrefabInstance:
     - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 1402499932}
+      objectReference: {fileID: 2019204399}
     - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: reloadTime
       value: 0.5
@@ -1954,6 +1965,14 @@ PrefabInstance:
     - target: {fileID: 2391509101257196261, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: timeBetweenShooting
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018202067683005450, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.2083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018202067683005450, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4965438261709640327, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: m_Name
