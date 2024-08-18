@@ -1537,6 +1537,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2023073647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5250943931759671427, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+  m_PrefabInstance: {fileID: 6244740212026295275}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3413d3e669519f40a3a4ee935f29dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6244740212026295275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1584,6 +1595,42 @@ PrefabInstance:
     - target: {fileID: 895401213774586709, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2023073647}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchAmmoType
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DamageGun, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709343265494919643, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: OnAmmoTypeSwitched.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767871263435100549, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: m_text
+      value: 00 / 00
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667755716546754508, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8200156010899136216, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: m_Name

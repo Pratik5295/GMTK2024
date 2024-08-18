@@ -631,6 +631,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAmmoTypeSwitched:
+    m_PersistentCalls:
+      m_Calls: []
+  switchAmmoTypeKey: 102
   FireCooldown: 1
   Automatic: 0
 --- !u!114 &2391509101257196261
@@ -653,12 +657,14 @@ MonoBehaviour:
   timeBetweenShots: 0.1
   magazineSize: 10
   bulletsPerTap: 1
-  text: {fileID: 0}
+  ammoText: {fileID: 5730326175948221411}
+  ammoTypeText: {fileID: 4868227142680482696}
   reloadKey: 114
   gunBarrelTip: {fileID: 4018202067683005450}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 0
+  currentAmmoType: 0
   muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
   bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   camShakeMagnitude: 0.15

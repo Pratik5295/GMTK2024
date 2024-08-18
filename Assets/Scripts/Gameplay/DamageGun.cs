@@ -11,7 +11,8 @@ public class DamageGun : MonoBehaviour
     [SerializeField] float timeBetweenShooting = 0f;
     [SerializeField] float spread = .05f, range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
     [SerializeField] int magazineSize = 10, bulletsPerTap = 1;
-    [SerializeField] TMP_Text text;
+    [SerializeField] TMP_Text ammoText;
+    [SerializeField] TMP_Text ammoTypeText;
     int bulletsLeft, bulletsShot;
 
 
@@ -52,7 +53,8 @@ public class DamageGun : MonoBehaviour
         if (Input.GetKeyDown(reloadKey) && bulletsLeft < magazineSize && !reloading) Reload();
 
         //Set Ammo Text
-        text.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
+        ammoText.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
+        ammoTypeText.SetText(CurrentAmmoTypeText());
     }
 
     public void OnShoot()
@@ -101,7 +103,7 @@ public class DamageGun : MonoBehaviour
                 }
                 else if (currentAmmoType == AmmoType.shrink)
                 {
-
+                    rayHit.collider.gameObject.GetComponent<Entity>().Shrink(damage);
                 }
             }
 
@@ -137,5 +139,56 @@ public class DamageGun : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    public void SwitchAmmoType()
+    {
+        switch (currentAmmoType)
+        {
+            case AmmoType.normal:
+                {
+                    currentAmmoType = AmmoType.enlarge;
+                    break;
+                }
+
+            case AmmoType.enlarge:
+                {
+                    currentAmmoType = AmmoType.shrink;
+                    break;
+                }
+
+            case AmmoType.shrink:
+                {
+                    currentAmmoType = AmmoType.normal;
+                    break;
+                }
+        }
+    }
+
+    string CurrentAmmoTypeText()
+    {
+        switch (currentAmmoType)
+        {
+            
+
+            case AmmoType.normal:
+                {
+                    return "0";
+                }
+
+            case AmmoType.enlarge:
+                {
+                    return "+";
+                }
+
+            case AmmoType.shrink:
+                {
+                    return "-";
+                }
+
+            default:
+                return string.Empty;
+                
+        }
     }
 }

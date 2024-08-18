@@ -40,4 +40,15 @@ public class Entity : MonoBehaviour
         transform.localScale = transform.localScale * (1 + 1/damage);
     }
 
+    public void Shrink(float damage)
+    {
+        health -= damage;
+        if (health <= 0f)
+        {
+            gameObject.SetActive(false);
+        }
+
+        transform.localScale = transform.localScale / (1 + 1 / damage);
+    }
+
 }

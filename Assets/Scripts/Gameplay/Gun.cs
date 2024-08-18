@@ -7,6 +7,8 @@ public class Gun : MonoBehaviour
 {
 
     [SerializeField] UnityEvent OnGunShoot;
+    [SerializeField] UnityEvent OnAmmoTypeSwitched;
+    [SerializeField] KeyCode switchAmmoTypeKey = KeyCode.F;
     [Tooltip("Firing cooldown in seconds")][SerializeField] float FireCooldown;
 
     
@@ -42,6 +44,11 @@ public class Gun : MonoBehaviour
                     CurrentCooldown = FireCooldown;
                 }
             }
+        }
+
+        if(Input.GetKeyDown(switchAmmoTypeKey))
+        {
+            OnAmmoTypeSwitched?.Invoke();
         }
 
         CurrentCooldown -= Time.deltaTime;
