@@ -10,6 +10,8 @@ public static class MetaConstants
 
     public const float MaxPlayerHealth = 100f;
 
+    public const string MatShaderOverlay = "_OverlayAmount";
+
     #endregion
 
     public enum DeathCodes
