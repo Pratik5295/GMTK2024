@@ -631,6 +631,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAltGunShoot:
+    m_PersistentCalls:
+      m_Calls: []
   OnAmmoTypeSwitched:
     m_PersistentCalls:
       m_Calls:
@@ -648,6 +651,7 @@ MonoBehaviour:
         m_CallState: 2
   switchAmmoTypeKey: 102
   FireCooldown: 0
+  altFireCooldown: 0
   Automatic: 0
 --- !u!114 &2391509101257196261
 MonoBehaviour:
@@ -663,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   timeBetweenShooting: 0.25
-  spread: 0.05
+  spread: 0.01
   range: 50
   reloadTime: 1
   timeBetweenShots: 0.1

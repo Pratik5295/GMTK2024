@@ -77,6 +77,10 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _attackStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: e15f2fe9e03ee914f9698e09fd3dbf28, type: 2}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: _movementStrategy
       value: 
       objectReference: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}

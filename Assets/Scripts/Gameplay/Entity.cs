@@ -52,7 +52,7 @@ public class Entity : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        Vector3 newScale = transform.localScale * (1 + 1 / damage);
+        Vector3 newScale = transform.localScale * (1 + 1 / damage * 2.5f);
 
         StartCoroutine(ScaleEnemy(newScale, .2f));
 
@@ -69,7 +69,7 @@ public class Entity : MonoBehaviour
             gameObject.SetActive(false);
         }
         
-        Vector3 newScale = transform.localScale / (1 + 1 / damage);
+        Vector3 newScale = transform.localScale / (1 + 1 / damage * 2.5f);
 
         StartCoroutine(ScaleEnemy(newScale, .2f));
         //transform.localScale = transform.localScale / (1 + 1 / damage);

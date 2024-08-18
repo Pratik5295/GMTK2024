@@ -141,7 +141,7 @@ MonoBehaviour:
   _agent: {fileID: 2045771202418415967}
   _enemySO: {fileID: 11400000, guid: 0352f1e513abb4146b9da1b7e7a0018e, type: 2}
   _movementStrategy: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}
-  _attackStrategy: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
+  _attackStrategy: {fileID: 11400000, guid: e15f2fe9e03ee914f9698e09fd3dbf28, type: 2}
 --- !u!114 &245505314944994127
 MonoBehaviour:
   m_ObjectHideFlags: 0
