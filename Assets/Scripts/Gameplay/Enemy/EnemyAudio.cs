@@ -22,7 +22,7 @@ public class EnemyAudio : MonoBehaviour, IObserverSubscriber
             Observer.Instance.OnEnemyAttack -= EnemyAttack;
         }
     }
-    private void EnemyAttack(object sender, Observer.OnEnemyAttackEventArgs e)
+    private void EnemyAttack(object sender, Observer.OnEnemyVisualEventArgs e)
     {
         if(e.Enemy == gameObject.transform.parent.gameObject)
         {

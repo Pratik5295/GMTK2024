@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 245505314944994127, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2045771202418415967, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Speed
       value: 4.5
@@ -23,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 5458887550788504623, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: efcb51a1e2f09d1429d4061c1d9f81a9, type: 2}
+      objectReference: {fileID: 2100000, guid: 0076ec57f24df844b94078c10686047c, type: 2}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -73,10 +77,15 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _attackStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: e15f2fe9e03ee914f9698e09fd3dbf28, type: 2}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: _movementStrategy
       value: 
       objectReference: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 23970462916486167, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

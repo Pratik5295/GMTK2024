@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     [SerializeField] private EnemySO _enemySO;
     [SerializeField] private MovementStrategy _movementStrategy;
     [SerializeField] private AttackStategy _attackStrategy;
-    [SerializeField] private LayerMask _playerLayer;
     private GameObject _player;
-
 
     private bool _playerInAttackRange;
     private bool _alreadyAttacked;
@@ -24,7 +23,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     private float _instanceAttackDistance;
     private float _instanceTimeBetweenAttacks;
 
-
+    private RaycastHit hit;
     public void SetupScriptableObject()
     {
         _instanceEnemySO = Instantiate(_enemySO);
@@ -48,16 +47,30 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
     }
     private void Update()
     {
-        _playerInAttackRange = Physics.CheckSphere(transform.position, _instanceAttackDistance, _playerLayer);
+        if (Physics.SphereCast(transform.position, _instanceAttackDistance, transform.forward, out hit))
+        {
+            
+            if(hit.collider.gameObject.tag ==IStringDefinitions.PLAYER_TAG)
+            {
+                Debug.Log("object collided with is player");
+                _playerInAttackRange = true;
+            } else
+            {
+                Debug.Log("is not the player:" + hit.collider.gameObject.name);
+            }
+        }
 
         if(!_playerInAttackRange) Chase();
         if(_playerInAttackRange) Attack();
 
+        transform.LookAt(_player.transform);
         Debug.Log("already attacked" + _alreadyAttacked);
+        Debug.Log("player in attack range: " + _playerInAttackRange);
     }
     private void Chase()
     {
         _movementStrategy.Move(_agent, _player.transform);
+        Observer.Instance.EnemyChase(gameObject);
     }
     private void Attack()
     {
@@ -66,15 +79,25 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
 
         if (!_alreadyAttacked)
         {
-            _attackStrategy.Attack(transform, this);
-            StartCoroutine(ResetAttack(_instanceTimeBetweenAttacks));
+            Debug.Log("enemy should attack");
+            _attackStrategy.Attack(new AttackStategyParamethers(_agent, transform, _player.transform, this));
+            Observer.Instance.EnemyAttack(gameObject);
+            _alreadyAttacked = true;
+            
+            Invoke("ResetAttack", _instanceTimeBetweenAttacks);
         }
     }
-    private IEnumerator ResetAttack(float attackCooldDown)
+
+    private void ResetAttack()
     {
-        _alreadyAttacked = true;
         Debug.Log("reset attack should be called");
-        yield return new WaitForSeconds(attackCooldDown);
         _alreadyAttacked = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, _instanceAttackDistance);
+        
     }
 }
