@@ -14,6 +14,16 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> _pulledEnemyProjectile = new List<GameObject>();
     public GameObject _enemyProjectilesToPool;
     public int _amountOfEnemyProjectilesToPool;
+
+    [Header("Player Objects")]
+    public List<GameObject> _pulledBulletDecals = new List<GameObject>();
+    public GameObject bulletDecal;
+    public int bulletDecalsToPool;
+    public List<GameObject> _pulledMuzzleFlashes = new List<GameObject>();
+    public GameObject muzzleFlash;
+    public int muzzleFlashsToPool;
+
+
     private void Awake()
     {
         if(Instance == null) Instance = this;
@@ -21,7 +31,9 @@ public class ObjectPool : MonoBehaviour
     private void InitializeAllPools()
     {
         InitializePool(_enemyProjectilesToPool, _pulledEnemyProjectile, _amountOfEnemyProjectilesToPool);
-        foreach(var item in _enemyPoolItems)
+        InitializePool(bulletDecal, _pulledBulletDecals, bulletDecalsToPool);
+        InitializePool(muzzleFlash, _pulledMuzzleFlashes, muzzleFlashsToPool);
+        foreach (var item in _enemyPoolItems)
         {
             var poolList = new List<GameObject>();
             InitializePool(item.enemyPrefab, poolList, item.amountToPool);
@@ -46,6 +58,17 @@ public class ObjectPool : MonoBehaviour
     {
         return GetPooledObject(_enemyProjectilesToPool, _pulledEnemyProjectile, _amountOfEnemyProjectilesToPool);
     }
+
+    public GameObject GetPooledBulletDecals()
+    {
+        return GetPooledObject(bulletDecal, _pulledBulletDecals, bulletDecalsToPool);
+    }
+
+    public GameObject GetPooledMuzzleFlashes()
+    {
+        return GetPooledObject(muzzleFlash, _pulledMuzzleFlashes, muzzleFlashsToPool);
+    }
+
     private GameObject GetPooledObject(GameObject objectToPool, List<GameObject> listToAddObjects, int amountToPool)
     {
         for(int i = 0; i < amountToPool; i++)

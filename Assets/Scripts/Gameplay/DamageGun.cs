@@ -74,11 +74,11 @@ public class DamageGun : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Shot");
+        //Debug.Log("Shot");
         readyToShoot = false;
 
-        GameObject player = PlayerMovement.player.gameObject;
-
+        //GameObject player = PlayerMovement.player.gameObject;
+        /*
         //Spread
         bool ifMoving = player.GetComponent<Rigidbody>().velocity.magnitude > 0;
 
@@ -86,9 +86,9 @@ public class DamageGun : MonoBehaviour
 
         float x = Random.Range(-tempSpread, tempSpread);
         float y = Random.Range(-tempSpread, tempSpread);
-
+        */
         //Calculate the spread direction
-        Vector3 direction = PlayerCamera.forward + new Vector3(x, y, 0);
+        Vector3 direction = PlayerCamera.forward;// + new Vector3(x, y, 0); //<-- for spread
 
         if (Physics.Raycast(PlayerCamera.position, direction, out rayHit, range, whatIsEnemy))
         {
@@ -113,8 +113,25 @@ public class DamageGun : MonoBehaviour
         camShake.Shake(camShakeDuration, camShakeMagnitude);
 
         //Graphics
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
+        
+        GameObject bulletDecalClone = ObjectPool.Instance.GetPooledBulletDecals();
+        GameObject muzzleFlashClone = ObjectPool.Instance.GetPooledMuzzleFlashes();
+        if (bulletDecalClone != null)
+        {
+            bulletDecalClone.transform.position = rayHit.point;
+            bulletDecalClone.transform.rotation = Quaternion.Euler(0, 180, 0);
+            bulletDecalClone.SetActive(true);
+        }
+
+        if (muzzleFlashClone != null)
+        {
+            muzzleFlashClone.transform.position = gunBarrelTip.position;
+            muzzleFlashClone.transform.rotation = Quaternion.identity;
+            muzzleFlashClone.SetActive(true);
+        }
+
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        //Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
@@ -122,6 +139,18 @@ public class DamageGun : MonoBehaviour
 
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
+    }
+
+    void PrimaryFire()
+    {
+        currentAmmoType = AmmoType.enlarge;
+        Shoot();
+    }
+
+    void SecondaryFire()
+    {
+        currentAmmoType = AmmoType.shrink;
+        Shoot();
     }
 
     private void ResetShot()

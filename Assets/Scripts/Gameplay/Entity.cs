@@ -54,7 +54,7 @@ public class Entity : MonoBehaviour
 
         Vector3 newScale = transform.localScale * (1 + 1 / damage * 2.5f);
 
-        StartCoroutine(ScaleEnemy(newScale, .2f));
+        StartCoroutine(ScaleEnemy(newScale, scaleTiming));
 
         //transform.localScale = transform.localScale * (1 + 1/damage);
     }

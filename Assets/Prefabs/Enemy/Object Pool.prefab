@@ -57,3 +57,9 @@ MonoBehaviour:
   _pulledEnemyProjectile: []
   _enemyProjectilesToPool: {fileID: 5103016197584448533, guid: 02dde0c11fe17614db4dbb7d9aa4c56a, type: 3}
   _amountOfEnemyProjectilesToPool: 10
+  _pulledBulletDecals: []
+  bulletDecal: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
+  bulletDecalsToPool: 10
+  _pulledMuzzleFlashes: []
+  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+  muzzleFlashsToPool: 1
