@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5458887550788504623, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b13eadc230f9054dbbe983e054b2c0a, type: 2}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -72,6 +76,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6608729983348137890, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _attackStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: eefbce1810a3c684ca83e1c2d8e45b2f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

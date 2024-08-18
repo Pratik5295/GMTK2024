@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814a1cda6e6881f46b9a1920fe6368aa, type: 3}
   m_Name: Basic
   m_EditorClassIdentifier: 
-  _enemyType: Basic
+  _enemyType: 0
   _health: 100
   _speed: 3
   _damageDealt: 1
+  _attackDistance: 5
+  _timeBetweenAttacks: 2
