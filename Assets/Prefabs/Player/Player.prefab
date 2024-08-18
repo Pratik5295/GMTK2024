@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286abb44d98100244b2a3d7716312ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPos: {fileID: 9110679114848116757}
   walkSpeed: 7
   sprintSpeed: 10
   groundDrag: 3
