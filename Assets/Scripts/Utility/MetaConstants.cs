@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using static MetaConstants;
 
 /// <summary>
@@ -6,6 +7,13 @@ using static MetaConstants;
 /// </summary>
 public static class MetaConstants
 {
+
+    #region Player Input Constants
+
+    public const KeyCode readDialog = KeyCode.X;
+
+    #endregion
+
     #region Player Health System
 
     public const float MaxPlayerHealth = 100f;
