@@ -1,13 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 [CreateAssetMenu(fileName = "Projectile", menuName = "ScriptableObjects/Enemy/Attacks/Projectile")]
 public class ProjectileAttack : AttackStategy
 {
-    public override void Attack(Transform bulletSpawner, Transform player, MonoBehaviour monoBehaviour)
+    public override void Attack(AttackStategyParamethers e)
     {
         Debug.Log("attack being called");
-        ShootAtPlayer(bulletSpawner, player.transform);
+        ShootAtPlayer(e.BulletSpawner, e.Player.transform);
     }
+
+
     public void ShootAtPlayer(Transform bulletSpawner, Transform player)
     {
         Debug.Log("shoot being called");

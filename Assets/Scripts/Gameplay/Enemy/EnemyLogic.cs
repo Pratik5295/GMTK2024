@@ -80,7 +80,7 @@ public class EnemyLogic : MonoBehaviour, ISetupScriptableObject
         if (!_alreadyAttacked)
         {
             Debug.Log("enemy should attack");
-            _attackStrategy.Attack(transform, _player.transform, this);
+            _attackStrategy.Attack(new AttackStategyParamethers(_agent, transform, _player.transform, this));
             Observer.Instance.EnemyAttack(gameObject);
             StartCoroutine(ResetAttack(_instanceTimeBetweenAttacks));
         }
