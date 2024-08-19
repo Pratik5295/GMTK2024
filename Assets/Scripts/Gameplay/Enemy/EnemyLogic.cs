@@ -6,33 +6,27 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private EnemyType _enemyType;
     [SerializeField] private float _speed = 3.5f;
-    [SerializeField] private float _attackRange = 1;
     [SerializeField] private float _damageDealt = 1;
+    [SerializeField] private Transform _bulletSpawner;
     private Vector3 _originalSize;
     private Entity _entity;
-    private float _originalHealth;
     private float _chaseTimer = 0;
+    private float _attackTimer = 0;
     private float _timeToChase = 0.25f;
-    private float _attackCooldown = 2;
+    [SerializeField] private float _attackCooldown = 10;
     private bool _hasAttacked = false;
     public EnemyType EnemyType {get{return _enemyType;}}
     private void OnEnable()
     {
-        _originalHealth = _entity.Health;
-        _agent.stoppingDistance = _attackRange;
         _originalSize = transform.localScale;
         _agent.speed = _speed;
         transform.localScale = _originalSize;
-        _entity.Health = _originalHealth;
     }
     private void Start()
     {
-        _originalHealth = _entity.Health;
-        _agent.stoppingDistance = _attackRange;
         _originalSize = transform.localScale;
         _agent.speed = _speed;
         transform.localScale = _originalSize;
-        _entity.Health = _originalHealth;
     }
     private void Update()
     {
@@ -46,14 +40,16 @@ public class EnemyLogic : MonoBehaviour
                 if(_agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked)
                 {
                     Debug.Log("attack should be called");
-                    //Attack();
+                    Attack();
                 }
             }
         }
+        Debug.Log("has attacked" + _hasAttacked);
     }
     private void Attack()
     {
-        Debug.Log("attack being called");
+        Debug.Log("attack being called" + _attackCooldown);
+
         _hasAttacked = true;
         switch(_enemyType)
         {
@@ -70,6 +66,7 @@ public class EnemyLogic : MonoBehaviour
                 break;
         }
         Invoke("ResetAttack", _attackCooldown);
+        
     }
     private void MeeleeAttack()
     {
@@ -78,13 +75,14 @@ public class EnemyLogic : MonoBehaviour
     }
     private void RangedAttack()
     {
-        Debug.Log("ranged attack being called");
-        Vector3 directionToShoot = _agent.transform.position - PlayerMovement.player.transform.position;
+        Debug.Log("Raphael ranged attack being called");
+        Vector3 directionToShoot = PlayerMovement.player.transform.position - _bulletSpawner.transform.position ;
+        Debug.DrawRay(_bulletSpawner.transform.position, directionToShoot, Color.red, 10);
         GameObject projectile = ObjectPool.Instance.GetPooledEnemyProjectiles();
         if(projectile != null)
         {
-            Debug.Log("projectile not null");
-            projectile.transform.position = transform.position;
+            Debug.Log("Raphael bullet is being fired");
+            projectile.transform.position = _bulletSpawner.transform.position;
             projectile.transform.rotation = Quaternion.identity;
             projectile.SetActive(true);
         } else
@@ -92,9 +90,10 @@ public class EnemyLogic : MonoBehaviour
             Debug.Log("projectile was null");
         }
         ProjectileMover projectileMover = projectile.GetComponent<ProjectileMover>();
-        projectileMover.Direction = -directionToShoot;
+        projectileMover.Direction = directionToShoot;
+        projectileMover.DamageDealt = _damageDealt;
     }
-    private void ResetAttack(float attackCooldown)
+    private void ResetAttack()
     {
         Debug.Log("reset attack being called");
         _hasAttacked = false;
