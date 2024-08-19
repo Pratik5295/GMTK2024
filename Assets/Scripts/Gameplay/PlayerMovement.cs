@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement player;
+    public static PlayerMovement player{get; private set;}
     public GameObject cameraPos;
 
     [Header("Movement")]

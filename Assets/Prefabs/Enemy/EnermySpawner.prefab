@@ -56,7 +56,10 @@ MonoBehaviour:
   - {fileID: 1862702454484016059}
   - {fileID: 3719581898260529292}
   _firstWave: {fileID: 11400000, guid: bcc334d02bab28d4896547b8eb439127, type: 2}
-  _timeToSpawnAnEnemy: 2
+  _secondWave: {fileID: 11400000, guid: bcc334d02bab28d4896547b8eb439127, type: 2}
+  _thirdWave: {fileID: 11400000, guid: bcc334d02bab28d4896547b8eb439127, type: 2}
+  _fourthWave: {fileID: 11400000, guid: bcc334d02bab28d4896547b8eb439127, type: 2}
+  _timeBetweenEnemiesSpawn: 2
 --- !u!1 &1385714867881207309
 GameObject:
   m_ObjectHideFlags: 0

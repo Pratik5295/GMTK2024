@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 
 public class Observer : MonoBehaviour
@@ -9,22 +10,37 @@ public class Observer : MonoBehaviour
     {
         Instance = this;
     }
-    public class OnEnemyVisualEventArgs: EventArgs
+    public class EnemyEventArgs: EventArgs
     {
-        public GameObject Enemy;
-        public OnEnemyVisualEventArgs(GameObject enemy)
+        public GameObject EnemyObj;
+        public EnemyEventArgs(GameObject enemyObj)
         {
-            Enemy = enemy;
+            EnemyObj = enemyObj;
         }
     }
-    public event EventHandler<OnEnemyVisualEventArgs> OnEnemyAttack;
-    public event EventHandler<OnEnemyVisualEventArgs> OnEnemyChase;
-    public void EnemyAttack(GameObject enemy)
+    public event EventHandler<EnemyEventArgs> OnEnemyAttackEvent;
+    public event EventHandler<EnemyEventArgs> OnAttackEndedEvent;
+    public event EventHandler<EnemyEventArgs> OnEnemyChaseEvent;
+    public event EventHandler<EnemyEventArgs> OnEnemyDeathEvent;
+    public event EventHandler<EnemyEventArgs> OnWaitingToAttack;
+    public void EnemyAttack(GameObject enemyObj)
     {
-        OnEnemyAttack?.Invoke(this, new OnEnemyVisualEventArgs(enemy));
+        OnEnemyAttackEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
     }
-    public void EnemyChase(GameObject enemy)
+    public void WaitToAttack(GameObject enemyObj)
     {
-        OnEnemyChase?.Invoke(this, new OnEnemyVisualEventArgs(enemy));
+        OnWaitingToAttack?.Invoke(this, new EnemyEventArgs(enemyObj));
+    }
+    public void EnemyAttackEnded(GameObject enemyObj)
+    {
+        OnEnemyAttackEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
+    }
+    public void EnemyChase(GameObject enemyObj)
+    {
+        OnEnemyChaseEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
+    }
+    public void EnemyDeath(GameObject enemyObj)
+    {
+        OnEnemyDeathEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
     }
 }
