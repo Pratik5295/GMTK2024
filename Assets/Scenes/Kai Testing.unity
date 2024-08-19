@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 44446333}
   - component: {fileID: 44446332}
   - component: {fileID: 44446336}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 51915694}
   - component: {fileID: 51915693}
   - component: {fileID: 51915697}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Cube (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1272,6 +1272,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -59.69}
+--- !u!114 &1395656640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
+  m_PrefabInstance: {fileID: 8186677510668417088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d2e46d680013e41953f40b4d4331da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1402499930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,6 +1653,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
+      propertyPath: muzzleFlashsToPool
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
       propertyPath: _enemyProjectilesToPool
       value: 
       objectReference: {fileID: 0}
@@ -1691,7 +1706,7 @@ GameObject:
   - component: {fileID: 1754152268}
   - component: {fileID: 1754152267}
   - component: {fileID: 1754152271}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Cube (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2135,7 +2150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4478094298981285728, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: whatIsEnemy.m_Bits
-      value: 2640
+      value: 592
       objectReference: {fileID: 0}
     - target: {fileID: 6008927798374690360, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: Automatic
@@ -2177,9 +2192,25 @@ PrefabInstance:
       propertyPath: OnAltGunShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6628731410320568066, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784803214133769141, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1395656640}
+    - target: {fileID: 7588183101869420102, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 33791
+      objectReference: {fileID: 0}
     - target: {fileID: 8200156010899136216, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: m_Name
       value: Camera Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237803330930411003, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
