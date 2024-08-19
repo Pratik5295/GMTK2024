@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Transform cameraPosition;
+    Transform cameraPosition;
+
+    GameObject player;
+
+    private void Start()
+    {
+        player = PlayerMovement.player.gameObject;
+        cameraPosition = player.GetComponent<PlayerMovement>().cameraPos.transform;
+    }
 
     void Update()
     {

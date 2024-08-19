@@ -12,7 +12,8 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float maxLookDown;
 
     [Tooltip("Keeps track of direction player is facing")]
-    public Transform orientation;
+    Transform orientation;
+    GameObject player;
 
     float xRotation;
     float yRotation;
@@ -20,6 +21,9 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         //Being handles in CursorHanlder.cs
+
+        player = PlayerMovement.player.gameObject;
+        orientation = player.GetComponent<PlayerMovement>().orientation;
 
         if (GameManager.Instance == null)
         {

@@ -8,13 +8,20 @@ public class ObjectPool : MonoBehaviour
 
     [Header("Enemies")]
     private Dictionary<EnemyType, List<GameObject>> _enemyPools = new Dictionary<EnemyType, List<GameObject>>();
-    public List<EnemyPoolItem> _enemyPoolItems;
+    public List<EnemyPoolItem> _enemyPoolItems = new List<EnemyPoolItem>();
+
+    [Header("Enemy Projectiles")]
+    public List<GameObject> _pulledEnemyProjectile = new List<GameObject>();
+    public GameObject _enemyProjectilesToPool;
+    public int _amountOfEnemyProjectilesToPool;
+
     private void Awake()
     {
-        Instance = this;
+        if(Instance == null) Instance = this;
     }
     private void InitializeAllPools()
     {
+        InitializePool(_enemyProjectilesToPool, _pulledEnemyProjectile, _amountOfEnemyProjectilesToPool);
         foreach(var item in _enemyPoolItems)
         {
             var poolList = new List<GameObject>();
@@ -35,6 +42,10 @@ public class ObjectPool : MonoBehaviour
         }
 
         return null;
+    }
+    public GameObject GetPooledEnemyProjectiles()
+    {
+        return GetPooledObject(_enemyProjectilesToPool, _pulledEnemyProjectile, _amountOfEnemyProjectilesToPool);
     }
     private GameObject GetPooledObject(GameObject objectToPool, List<GameObject> listToAddObjects, int amountToPool)
     {
