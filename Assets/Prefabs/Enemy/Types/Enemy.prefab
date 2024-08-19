@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916759138925271415}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6608729983348137890}
   - component: {fileID: 9077270099228007054}
   - component: {fileID: 245505314944994127}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 864582087249301657}
   - component: {fileID: 5458887550788504623}
   - component: {fileID: 7805980425202434446}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
