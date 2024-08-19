@@ -58,7 +58,7 @@ public class PlayerPunch : MonoBehaviour
         currentCooldown -= Time.deltaTime;
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
