@@ -57,26 +57,33 @@ public class PlayerPunch : MonoBehaviour
         currentCooldown -= Time.deltaTime;
     }
 
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("On Collision");
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy collision");
+            Entity enemy = col.gameObject.GetComponent<Entity>();
+            if (enemy.IsScaled())
+            {
+                Debug.Log("Collision - Enemy scaled and damaged");
+                enemy.Health -= punchDamage;
+            }
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log("On Trigger");
         if (col.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Enemy triggered");
             Entity enemy = col.gameObject.GetComponent<Entity>();
             if (enemy.IsScaled())
             {
-                Debug.Log("Enemy scaled and damaged");
+                Debug.Log("Trigger - Enemy scaled and damaged");
                 enemy.Health -= punchDamage;
             }
-                
-            /*else if ()
-            {
-                
-            }
-            else if ()
-            {
-                
-            }*/
         }
     }
 
