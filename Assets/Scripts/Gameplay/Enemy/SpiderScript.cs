@@ -1,22 +1,21 @@
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
-public class EnemyLogic : MonoBehaviour
+public class SpiderScript : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private EnemyType _enemyType;
-    [SerializeField] private Transform _bulletSpawner;
     [SerializeField] private AttackStategy _attackStrategy;
-
+    [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _damageDealt = 1;
     [SerializeField] private float _attackCooldown = 10;
-
+    [SerializeField] private float _attackRange;
+    private bool _playerInAttackRange = false;
+    private RaycastHit hit;
     private Vector3 _originalSize;
     private float _chaseTimer = 0;
     private float _timeToChase = 0.25f;
     private bool _hasAttacked = false;
-    private float _waitToAttackTime;
-    private bool _canAttack = false;
     private float _originalSpeed;
     public EnemyType EnemyType {get{return _enemyType;}}
     private void OnEnable()
@@ -35,6 +34,7 @@ public class EnemyLogic : MonoBehaviour
     }
     private void Update()
     {
+        _playerInAttackRange = Physics.SphereCast(transform.position, _attackRange, transform.forward, out hit, _playerLayer);
         _chaseTimer += Time.deltaTime;
         transform.LookAt(PlayerMovement.player.transform);
         if(PlayerMovement.player != null)
@@ -48,26 +48,19 @@ public class EnemyLogic : MonoBehaviour
                     _agent.SetDestination(PlayerMovement.player.transform.position);
                     if(_hasAttacked == false) Observer.Instance.EnemyChase(gameObject);
                 }
-                if(_agent.enabled && _agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked)
+                if(_agent.enabled && _playerInAttackRange && !_hasAttacked)
                 {
-                    Observer.Instance.WaitToAttack(gameObject);
-                    Invoke("WaitToAttack", _waitToAttackTime);
-                    if(_canAttack) Attack();
+                    Attack();
                 }
             }
         }
-    }
-    private void WaitToAttack()
-    {
-        _agent.speed = 0;
-        _canAttack = true;
     }
     private void Attack()
     {
         _agent.speed = 0;
         _hasAttacked = true;
         Observer.Instance.EnemyAttack(gameObject);
-        _attackStrategy.Attack(new AttackStategyParamethers(_agent, _bulletSpawner, _damageDealt, this));
+        _attackStrategy.Attack(new AttackStategyParamethers(_agent, gameObject.transform, _damageDealt, this));
         Invoke("ResetAttack", _attackCooldown);
         
     }
@@ -80,6 +73,6 @@ public class EnemyLogic : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_bulletSpawner.transform.position, 0.5f);
+        Gizmos.DrawSphere(gameObject.transform.position, 0.5f);
     }
 }

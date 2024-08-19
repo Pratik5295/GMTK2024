@@ -105,6 +105,7 @@ public enum EnemyType
 {
     Basic,
     Big,
+    Small,
     Fast,
 }
 
