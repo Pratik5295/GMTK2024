@@ -20,7 +20,12 @@ public class GameManager : MonoBehaviour
 
     public Action<GameState> OnStateChanged;
     public GameState State => state;
-    public bool IsPaused => isPaused;   
+    public bool IsPaused => isPaused;
+
+    //Score system section
+    [SerializeField] private int score;
+    public int Score => score;
+    public Action<int> OnScoreChangeEvent;
 
     private void Awake()
     {
@@ -74,4 +79,15 @@ public class GameManager : MonoBehaviour
     {
         SetState(GameState.DEFAULT);
     }
+
+
+    #region Score System Section
+
+    public void AddScore(int _amount)
+    {
+        score += _amount;
+        OnScoreChangeEvent?.Invoke(score);
+    }
+
+    #endregion
 }
