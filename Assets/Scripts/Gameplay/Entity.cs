@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private float StartingHealth = 10f;
     [Tooltip("In Seconds")][SerializeField] float scaleTiming = .3f;
     private float health;
-
+    private EnemySpawner _enemySpawner;
     [SerializeField] EnemyType enemyType = EnemyType.normal;
 
     enum EnemyType
@@ -31,6 +31,7 @@ public class Entity : MonoBehaviour
             //Debug.Log(health);
             if(health <= 0f)
             {
+                _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
                 gameObject.SetActive(false);
             }
         }
@@ -38,6 +39,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
+        _enemySpawner = GetComponentInParent<EnemySpawner>();
         health = StartingHealth;
     }
 
@@ -49,6 +51,7 @@ public class Entity : MonoBehaviour
 
         if (health <= 0f)
         {
+            _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
             gameObject.SetActive(false);
         }
 
@@ -66,6 +69,7 @@ public class Entity : MonoBehaviour
         health -= damage;
         if (health <= 0f)
         {
+            _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
             gameObject.SetActive(false);
         }
         

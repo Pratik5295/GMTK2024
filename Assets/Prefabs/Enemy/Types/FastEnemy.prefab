@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 245505314944994127, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: enemyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2045771202418415967, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Speed
@@ -73,6 +73,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _enemyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: _ground.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -86,7 +90,8 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5d0ded645ffb11b4aab46aafd92f19fa, type: 2}
     m_RemovedComponents:
     - {fileID: 23970462916486167, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3725437401527181929, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9764e74a73d94e9409c960448091fe38, type: 3}

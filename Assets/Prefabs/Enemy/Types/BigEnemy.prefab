@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 245505314944994127, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: enemyType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2045771202418415967, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Speed
@@ -46,15 +46,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.158893
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.4454155
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6548539794520334030, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87,6 +87,18 @@ PrefabInstance:
     - target: {fileID: 6608729983348137890, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: m_Center.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
+      propertyPath: _attackRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9077270099228007054, guid: 9764e74a73d94e9409c960448091fe38, type: 3}
       propertyPath: _attackStrategy

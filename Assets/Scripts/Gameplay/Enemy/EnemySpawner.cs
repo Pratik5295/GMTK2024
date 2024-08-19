@@ -2,57 +2,85 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondEnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPositions;
-    [SerializeField] private EnemiesListSO _firstWave;
-    [SerializeField] private EnemiesListSO _secondWave;
-    [SerializeField] private EnemiesListSO _thirdWave;
-    [SerializeField] private EnemiesListSO _fourthWave;
-    [SerializeField] private float _timeBetweenEnemiesSpawn;
-    private float _wavesTimer;
+    public Wave[] _waves;
 
-    private void Update()
+    [Header("Time Variables")]
+    [SerializeField] private float _countDown = 2;
+    private int _currentWaveIndex = 0;
+    private bool _readyToCountDown;
+    public int CurrentWaveIndex {get{return _currentWaveIndex;}}
+
+    private void Start()
     {
-        _wavesTimer += Time.deltaTime;
-        TryToSpawnEnemy();
-    }
-    private void TryToSpawnEnemy()
-    {
-        int randomEnemyIndex;
-        int randomSpawnIndex;
-        if(_wavesTimer >= _timeBetweenEnemiesSpawn)
+        _readyToCountDown = true;
+
+        for(int i = 0; i < _waves.Length; i++)
         {
-            _wavesTimer = 0;
-            //chooses a random enemy to be spawned and one of the spawn positions on the list
-
-            randomEnemyIndex = Random.Range(0, _firstWave._enemiesList.Count);
-            randomSpawnIndex = Random.Range(0, _spawnPositions.Count);
-            SpawnEnemy(randomEnemyIndex, randomSpawnIndex);
-             
+            _waves[i]._enemiesLeft = _waves[i]._enemies.Length;
         }
     }
-    private void SpawnEnemy(int randomEnemyIndex, int randomSpawnIndex)
+    private void Update()
     {
-        EnemySO chosenEnemy = _firstWave._enemiesList[randomEnemyIndex];
-        Transform chosenSpawn = _spawnPositions[randomSpawnIndex];
-
-        if(!SpawnWithingCameraView(chosenSpawn))
+        //if we reach the last wave, add a new wave equal to the last one
+        if(_currentWaveIndex >= _waves.Length)
         {
-            //Pools the enemy from the ObjectPool
-            GameObject enemyClone = ObjectPool.Instance.GetPooledEnemy(chosenEnemy._enemyType);
-            if(enemyClone != null)
+            _currentWaveIndex --;
+            //Debug.Log("Add logic to go infinite here");
+            //return;
+        }
+
+        if(_readyToCountDown == true)
+        {
+            _countDown -= Time.deltaTime;
+        }
+        if(_countDown <= 0)
+        {
+            _readyToCountDown = false;
+            _countDown = _waves[_currentWaveIndex]._timeToNextWave;
+
+            StartCoroutine(SpawnWave());
+        }
+
+        //if there are no more enemies within the wave, start countdown for a new wave and go to the next wave
+        if(_waves[_currentWaveIndex]._enemiesLeft == 0)
+        {
+            _readyToCountDown = true;
+            _currentWaveIndex ++;
+        }
+    }
+    private IEnumerator SpawnWave()
+    {
+        if(_currentWaveIndex < _waves.Length)
+        {
+            for(int i = 0; i <  _waves[_currentWaveIndex]._enemies.Length; i++)
             {
-                enemyClone.transform.position = chosenSpawn.transform.position;
-                enemyClone.transform.rotation = Quaternion.identity;
-                enemyClone.SetActive(true);
+                int chosenIndex = Random.Range(0, _spawnPositions.Count);
+                
+                EnemyLogic enemyLogic = _waves[_currentWaveIndex]._enemies[i];
+                InstantiateEnemy(enemyLogic.EnemyType, chosenIndex);
+
+                yield return new WaitForSeconds(_waves[_currentWaveIndex]._timeToNextEnemy);
             }
+        }
+    }
+    private void InstantiateEnemy(EnemyType enemyType, int chosenIndex)
+    {
+        GameObject enemy = ObjectPool.Instance.GetPooledEnemy(enemyType);
+        if(enemy != null)
+        {
+            enemy.transform.position = _spawnPositions[chosenIndex].position;
+            enemy.transform.rotation = Quaternion.identity;
+            enemy.transform.SetParent(gameObject.transform);
+            enemy.SetActive(true);
         }
     }
     private bool SpawnWithingCameraView(Transform chosenSpawn)
     {   
+        //Checks if the enemies are within the camera's view
         Vector3 spawnPosition = new Vector3(chosenSpawn.transform.position.x, chosenSpawn.transform.position.y, chosenSpawn.transform.position.z);
-        // Checks if the enemies are within the camera's view
         Camera virtualCamera = Camera.main;
         Vector3 withinCameraView = virtualCamera.WorldToViewportPoint(spawnPosition);
 
@@ -70,4 +98,14 @@ public class SecondEnemySpawner : MonoBehaviour
             Gizmos.DrawSphere(t.position, 0.5f);
         }
     }
+}
+
+[System.Serializable]
+public class Wave
+{
+    public EnemyLogic[] _enemies;
+    public float _timeToNextEnemy = 2;
+    public float _timeToNextWave = 2;
+
+    [HideInInspector] public int _enemiesLeft;
 }
