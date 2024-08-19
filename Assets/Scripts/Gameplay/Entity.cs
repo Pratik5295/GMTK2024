@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] private float StartingHealth = 10f;
+    [SerializeField] private float StartingHealth = 1f;
     [Tooltip("In Seconds")][SerializeField] float scaleTiming = .3f;
     private float health;
+    [Tooltip("How many times should the enemy be scaled(in the correct type) before being vulnerable?")]
+    [SerializeField] int scaleRequired;
+    private int timesScaled;
 
     [SerializeField] EnemyType enemyType = EnemyType.normal;
 
@@ -43,16 +46,28 @@ public class Entity : MonoBehaviour
 
     public void Enlarge(float damage)
     {
-        if (enemyType != EnemyType.enlarge) return;
-
-        health -= damage;
-
-        if (health <= 0f)
+        if (enemyType == EnemyType.shrink)
         {
-            gameObject.SetActive(false);
+            timesScaled--;
+
+        }
+        else if (enemyType == EnemyType.enlarge)
+        {
+
+            /*health -= damage;
+
+            if (health <= 0f)
+            {
+                gameObject.SetActive(false);
+            }*/
+
+            timesScaled++;
+
         }
 
-        Vector3 newScale = transform.localScale * (1 + 1 / damage * 2.5f);
+        if (IsScaled()) return;
+
+        Vector3 newScale = transform.localScale * (1 + 1 / (damage * 2.5f));
 
         StartCoroutine(ScaleEnemy(newScale, scaleTiming));
 
@@ -61,18 +76,28 @@ public class Entity : MonoBehaviour
 
     public void Shrink(float damage)
     {
-        if (enemyType != EnemyType.shrink) return;
-
-        health -= damage;
-        if (health <= 0f)
+        if (enemyType == EnemyType.enlarge)
         {
-            gameObject.SetActive(false);
+            timesScaled--;
         }
-        
-        Vector3 newScale = transform.localScale / (1 + 1 / damage * 2.5f);
+        else if (enemyType == EnemyType.shrink)
+        {
 
-        StartCoroutine(ScaleEnemy(newScale, .2f));
-        //transform.localScale = transform.localScale / (1 + 1 / damage);
+            /*health -= damage;
+
+            if (health <= 0f)
+            {
+                gameObject.SetActive(false);
+            }*/
+
+            timesScaled++;
+        }
+
+        if (IsScaled()) return;
+
+        Vector3 newScale = transform.localScale / (1 + 1 / (damage * 2.5f));
+
+        StartCoroutine(ScaleEnemy(newScale, scaleTiming));
     }
 
     IEnumerator ScaleEnemy(Vector3 scale, float time)
@@ -87,8 +112,10 @@ public class Entity : MonoBehaviour
             yield return null;
         }
         
-
-        
     }
 
+    public bool IsScaled()
+    {
+        return timesScaled == scaleRequired;
+    }
 }

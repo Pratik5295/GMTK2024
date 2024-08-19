@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+
+using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class PlayerPunch : MonoBehaviour
@@ -8,13 +11,18 @@ public class PlayerPunch : MonoBehaviour
     Vector3 originalPos;
     [SerializeField] KeyCode punchButton = KeyCode.E;
 
+    [SerializeField] float punchDamage = 1f;
     [SerializeField] float punchCooldown = .5f;
     [SerializeField] float punchTiming = .3f;
     float currentCooldown;
 
     [SerializeField] bool canHold;
 
-    
+    [Header("Audio")]
+    [SerializeField] AudioClip punchSound;
+    //[SerializeField] AudioClip punchSound;
+    //[SerializeField] AudioClip punchSound;
+
 
     void Start()
     {
@@ -48,6 +56,24 @@ public class PlayerPunch : MonoBehaviour
             }
         }
         currentCooldown -= Time.deltaTime;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            Entity enemy = col.gameObject.GetComponent<Entity>();
+            if (enemy.IsScaled())
+                enemy.Health -= punchDamage;
+            /*else if ()
+            {
+                
+            }
+            else if ()
+            {
+                
+            }*/
+        }
     }
 
     IEnumerator Punch()

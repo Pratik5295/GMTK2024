@@ -64,7 +64,7 @@ public class DamageGun : MonoBehaviour
         {
             bulletsShot = bulletsPerTap;
             Shoot();
-            
+
         }
         else if (readyToShoot && !reloading && bulletsLeft == 0)
         {
@@ -141,16 +141,16 @@ public class DamageGun : MonoBehaviour
             Invoke("Shoot", timeBetweenShots);
     }
 
-    void PrimaryFire()
+    public void PrimaryFire()
     {
         currentAmmoType = AmmoType.enlarge;
-        Shoot();
+        OnShoot();
     }
 
-    void SecondaryFire()
+    public void SecondaryFire()
     {
         currentAmmoType = AmmoType.shrink;
-        Shoot();
+        OnShoot();
     }
 
     private void ResetShot()
