@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 44446333}
   - component: {fileID: 44446332}
   - component: {fileID: 44446336}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 51915694}
   - component: {fileID: 51915693}
   - component: {fileID: 51915697}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1691,7 +1691,7 @@ GameObject:
   - component: {fileID: 1754152268}
   - component: {fileID: 1754152267}
   - component: {fileID: 1754152271}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2135,7 +2135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4478094298981285728, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: whatIsEnemy.m_Bits
-      value: 1616
+      value: 2640
       objectReference: {fileID: 0}
     - target: {fileID: 6008927798374690360, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: Automatic
