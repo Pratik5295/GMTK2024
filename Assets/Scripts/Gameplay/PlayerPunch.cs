@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerPunch : MonoBehaviour
 {
-    [SerializeField] Transform punchBox; 
     Vector3 originalPos;
     [SerializeField] KeyCode punchButton = KeyCode.E;
 
@@ -27,7 +26,7 @@ public class PlayerPunch : MonoBehaviour
     void Start()
     {
         currentCooldown = punchCooldown;
-        originalPos = transform.localPosition;
+        originalPos = base.transform.localPosition;
     }
 
     private void Update()
@@ -78,7 +77,7 @@ public class PlayerPunch : MonoBehaviour
 
     IEnumerator Punch()
     {
-        originalPos = punchBox.localPosition;
+        originalPos = transform.localPosition;
         //Transform cam = Camera.main.transform;
         Vector3 newPos = Vector3.forward * 2;
 
@@ -88,14 +87,14 @@ public class PlayerPunch : MonoBehaviour
 
         while (t < punchTiming)
         {
-            punchBox.localPosition = Vector3.Lerp(punchBox.localPosition, newPos, punchTiming);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, punchTiming);
 
             t += Time.deltaTime;
 
             yield return null;
         }
 
-        punchBox.localPosition = originalPos;
+        transform.localPosition = originalPos;
 
 
     }

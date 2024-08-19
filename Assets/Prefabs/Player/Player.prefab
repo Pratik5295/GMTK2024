@@ -150,7 +150,6 @@ GameObject:
   - component: {fileID: 6232202433474184360}
   - component: {fileID: 7335850511041409126}
   - component: {fileID: 3651399265189504355}
-  - component: {fileID: 2874358888365195703}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -253,25 +252,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   isAlive: 0
---- !u!114 &2874358888365195703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3186593312873579732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d570a4bb740218342a39a02016c31acc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  punchBox: {fileID: 0}
-  punchButton: 101
-  punchDamage: 1
-  punchCooldown: 0.5
-  punchTiming: 0.3
-  canHold: 0
-  punchSound: {fileID: 0}
 --- !u!1 &7125607758359659598
 GameObject:
   m_ObjectHideFlags: 0

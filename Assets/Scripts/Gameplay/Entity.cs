@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
     private EnemySpawner _enemySpawner;
 
     [Tooltip("How many times should the enemy be scaled(in the correct type) before being vulnerable?")]
-    [SerializeField] int scaleRequired;
+    [SerializeField] int scaleRequired = 4;
     private int timesScaled;
 
     [SerializeField] EnemyType enemyType = EnemyType.normal;
