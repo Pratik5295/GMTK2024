@@ -33,10 +33,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: reload
-      takeName: Scene
-      internalID: -623603649343465320
-      firstFrame: 1
+      name: gun rig|reload gun alt
+      takeName: gun rig|reload gun alt
+      internalID: 5754176163402026560
+      firstFrame: 0
       lastFrame: 195
       wrapMode: 0
       orientationOffsetY: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
