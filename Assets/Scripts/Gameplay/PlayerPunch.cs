@@ -61,9 +61,14 @@ public class PlayerPunch : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy triggered");
             Entity enemy = col.gameObject.GetComponent<Entity>();
             if (enemy.IsScaled())
+            {
+                Debug.Log("Enemy scaled and damaged");
                 enemy.Health -= punchDamage;
+            }
+                
             /*else if ()
             {
                 
