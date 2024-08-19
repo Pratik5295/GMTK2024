@@ -9,7 +9,8 @@ public class DamageGun : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
     [SerializeField] float timeBetweenShooting = 0f;
-    [SerializeField] float spread = .05f, range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
+    //float spread = .05f;
+    [SerializeField] float range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
     [SerializeField] int magazineSize = 10, bulletsPerTap = 1;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] TMP_Text ammoTypeText;
