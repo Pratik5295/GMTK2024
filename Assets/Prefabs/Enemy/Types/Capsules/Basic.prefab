@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6608729983348137890}
   - component: {fileID: 9077270099228007054}
   - component: {fileID: 245505314944994127}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 10
   scaleTiming: 0.3
+  scaleRequired: 0
   enemyType: 2
 --- !u!1 &4596247600986587793
 GameObject:
