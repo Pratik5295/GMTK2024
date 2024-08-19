@@ -34,16 +34,13 @@ public class ProjectileMover : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Raphael projectile collided with something");
         if(other.gameObject.CompareTag(IStringDefinitions.PLAYER_TAG))
         {
-            Debug.Log("Raphael that something wsa the player");
             Vector3 collisionNormal = other.contacts[0].normal;
             gameObject.SetActive(false);
 
             PlayerHealth playerHealth = other.collider.gameObject.transform.parent.GetComponent<PlayerHealth>();
             playerHealth.ReduceHealth(_damageDealt);
-            Debug.Log("Raphael player health" + playerHealth.GetHealth);
         }
     }
 }
