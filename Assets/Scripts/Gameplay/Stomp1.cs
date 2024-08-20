@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stomp : MonoBehaviour
+public class Stomp1 : MonoBehaviour
 {
-
     [SerializeField] float stompDamage = 1f;
 
     [Header("Audio")]
@@ -29,5 +28,4 @@ public class Stomp : MonoBehaviour
             }
         }
     }
-
 }

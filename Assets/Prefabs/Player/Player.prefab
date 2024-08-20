@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7411326139993693458}
   - component: {fileID: 5700799722559098544}
   - component: {fileID: 7870507234215228469}
-  - component: {fileID: 3486103261819374523}
+  - component: {fileID: 5343116599847899812}
   m_Layer: 3
   m_Name: Stomp
   m_TagString: Untagged
@@ -241,7 +241,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3486103261819374523
+--- !u!114 &5343116599847899812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 872694993118564849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 089a634c107765b40893cb4057509a7f, type: 3}
+  m_Script: {fileID: 11500000, guid: b45730ce2853f494ca0d97f80a11b4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stompDamage: 1
@@ -348,7 +348,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 32776
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
