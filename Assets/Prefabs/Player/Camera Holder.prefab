@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 2660823494824862207}
   - component: {fileID: 1595576466103544541}
   - component: {fileID: 6274964080449058513}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 4787400557416045886}
   - component: {fileID: 4408561583255722888}
   - component: {fileID: 8189963125729473797}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Punch Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
