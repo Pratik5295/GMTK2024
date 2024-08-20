@@ -51,6 +51,8 @@ public class WeaponSway : MonoBehaviour
         float moveX = Mathf.Clamp(InputX * positionAmount, -maxPositionAmount, maxPositionAmount);
         float moveY = Mathf.Clamp(InputY * positionAmount, -maxPositionAmount, maxPositionAmount);
 
+        moveY = Mathf.Clamp(moveY * PlayerMovement.player.MoveSpeed * positionAmount, -maxPositionAmount, maxPositionAmount);
+
         Vector3 finalPos = new Vector3(moveX, moveY, 0);
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, finalPos + startPos, Time.deltaTime * smoothPositionAmount);

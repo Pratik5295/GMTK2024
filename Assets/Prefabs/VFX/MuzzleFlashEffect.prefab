@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198000012944515248}
   - component: {fileID: 199000013307124530}
   - component: {fileID: -9110353533786262520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
