@@ -16,11 +16,12 @@ public class PlayerPunch : MonoBehaviour
     float currentCooldown;
 
     [SerializeField] bool canHold;
+    bool isPunching;
 
     [Header("Audio")]
     [SerializeField] AudioClip punchSound;
-    //[SerializeField] AudioClip punchSound;
-    //[SerializeField] AudioClip punchSound;
+    [SerializeField] AudioClip successfulHitSound;
+    [SerializeField] AudioClip failedHitSound;
 
 
     void Start()
@@ -57,32 +58,25 @@ public class PlayerPunch : MonoBehaviour
         currentCooldown -= Time.deltaTime;
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        Debug.Log("On Collision");
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy collision");
-            Entity enemy = col.gameObject.GetComponent<Entity>();
-            if (enemy.IsScaled())
-            {
-                Debug.Log("Collision - Enemy scaled and damaged");
-                enemy.Health -= punchDamage;
-            }
-        }
-    }
-
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("On Trigger");
+        //Debug.Log("On Trigger");
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy triggered");
+            //Debug.Log("Enemy triggered");
             Entity enemy = col.gameObject.GetComponent<Entity>();
-            if (enemy.IsScaled())
+            if (enemy.IsScaled() && isPunching)
             {
-                Debug.Log("Trigger - Enemy scaled and damaged");
-                enemy.Health -= punchDamage;
+                //Debug.Log("Trigger - Enemy scaled and damaged");
+                if (enemy.enemyType == Entity.EnemyType.enlarge)
+                {
+                    enemy.Health -= punchDamage;
+                }
+                if (enemy.enemyType == Entity.EnemyType.shrink)
+                {
+                    
+                }
+
             }
         }
     }
@@ -90,10 +84,11 @@ public class PlayerPunch : MonoBehaviour
     IEnumerator Punch()
     {
         originalPos = transform.localPosition;
+        isPunching = true;
         //Transform cam = Camera.main.transform;
         Vector3 newPos = Vector3.forward * 2;
 
-        Debug.Log("cam forward: " + newPos);
+        //Debug.Log("cam forward: " + newPos);
 
         float t = 0f;
 
@@ -105,7 +100,8 @@ public class PlayerPunch : MonoBehaviour
 
             yield return null;
         }
-
+        
+        isPunching = false;
         transform.localPosition = originalPos;
 
 
