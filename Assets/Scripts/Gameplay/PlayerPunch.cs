@@ -72,7 +72,7 @@ public class PlayerPunch : MonoBehaviour
                 //Debug.Log("Trigger - Enemy scaled and damaged");
                 if (enemy.enemyType == Entity.EnemyType.enlarge)
                 {
-                    PunchFreeze();
+                    StartCoroutine(PunchFreeze());
                     enemy.Health -= punchDamage;
                 }
                 if (enemy.enemyType == Entity.EnemyType.shrink)
@@ -114,7 +114,7 @@ public class PlayerPunch : MonoBehaviour
     {
         Time.timeScale = punchFreezeTimeScale;
                
-        yield return new WaitForSecondsRealtime(punchFreezeTimeScale);
+        yield return new WaitForSecondsRealtime(punchFreezeLength);
 
         Time.timeScale = 1;
     }

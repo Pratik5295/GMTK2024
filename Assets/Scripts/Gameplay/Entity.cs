@@ -44,16 +44,21 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        originalSize = transform.localScale;
+    }
+
     private void Start()
     {
-        //originalSize = transform.localScale;
+        
         _enemySpawner = GetComponentInParent<EnemySpawner>();
         health = StartingHealth;
     }
     private void OnEnable()
     {
         timesScaled = 0;
-        //transform.localScale = originalSize;
+        transform.localScale = originalSize;
         health = StartingHealth;
     }
 
