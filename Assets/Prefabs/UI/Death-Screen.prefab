@@ -512,7 +512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2615313089086442728, guid: afbcc996450a47a4b8142cd1ad4d7582, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2615313089086442728, guid: afbcc996450a47a4b8142cd1ad4d7582, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2615313089086442728, guid: afbcc996450a47a4b8142cd1ad4d7582, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartLevel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2615313089086442728, guid: afbcc996450a47a4b8142cd1ad4d7582, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
