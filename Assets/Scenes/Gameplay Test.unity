@@ -568,6 +568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 124121025240757036, guid: 70eb85c8bf870464b89e1edb74e4816e, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 4f6a03184c576b549ab827c5d0ea2f29, type: 2}
     - target: {fileID: 3467494874409118780, guid: 70eb85c8bf870464b89e1edb74e4816e, type: 3}
       propertyPath: m_Name
       value: Arena-Level
@@ -611,6 +615,14 @@ PrefabInstance:
     - target: {fileID: 4496499199809410218, guid: 70eb85c8bf870464b89e1edb74e4816e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517929499128771433, guid: 70eb85c8bf870464b89e1edb74e4816e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092169252238726333, guid: 70eb85c8bf870464b89e1edb74e4816e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
