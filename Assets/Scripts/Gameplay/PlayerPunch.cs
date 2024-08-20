@@ -13,6 +13,8 @@ public class PlayerPunch : MonoBehaviour
     [SerializeField] float punchDamage = 1f;
     [SerializeField] float punchCooldown = .5f;
     [SerializeField] float punchTiming = .3f;
+    [SerializeField] float punchFreezeTimeScale = .05f;
+    [SerializeField] float punchFreezeLength = .1f;
     float currentCooldown;
 
     [SerializeField] bool canHold;
@@ -70,6 +72,7 @@ public class PlayerPunch : MonoBehaviour
                 //Debug.Log("Trigger - Enemy scaled and damaged");
                 if (enemy.enemyType == Entity.EnemyType.enlarge)
                 {
+                    PunchFreeze();
                     enemy.Health -= punchDamage;
                 }
                 if (enemy.enemyType == Entity.EnemyType.shrink)
@@ -105,5 +108,14 @@ public class PlayerPunch : MonoBehaviour
         transform.localPosition = originalPos;
 
 
+    }
+
+    IEnumerator PunchFreeze()
+    {
+        Time.timeScale = punchFreezeTimeScale;
+               
+        yield return new WaitForSecondsRealtime(punchFreezeTimeScale);
+
+        Time.timeScale = 1;
     }
 }
