@@ -44,8 +44,9 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
     {
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
-            Debug.Log("attack animation should play");
+            int chosenAttack = UnityEngine.Random.Range(0, 2);
             _enemyAnimator.SetBool(ATTACK, true);
+            //if(chosenAttack == 2) _enemyAnimator.SetBool(ATTACK_ALT, true);
         }
     }
     private void WaitToAttack(object sender, Observer.EnemyEventArgs e)
@@ -59,7 +60,7 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
     {
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
-            Debug.Log("chase animatin should play");
+            //Debug.Log("chase animatin should play");
             float speedValue = 1;
 
             _enemyAnimator.SetBool(ATTACK, false);
