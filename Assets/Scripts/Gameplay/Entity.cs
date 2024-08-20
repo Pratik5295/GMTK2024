@@ -15,6 +15,9 @@ public class Entity : MonoBehaviour
     private Vector3 originalSize;
     private int timesScaled;
 
+    [Header("Score System Variable")]
+    public int scoreGained = 10;
+
     [SerializeField] public EnemyType enemyType = EnemyType.normal;
 
     public enum EnemyType
@@ -40,6 +43,8 @@ public class Entity : MonoBehaviour
                 if (_enemySpawner != null)
                     _enemySpawner._waves._enemiesLeft--;
                 gameObject.SetActive(false);
+
+                GameManager.Instance.AddScore(scoreGained);
             }
         }
     }
