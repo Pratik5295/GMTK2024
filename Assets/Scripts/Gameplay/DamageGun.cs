@@ -24,6 +24,28 @@ public class DamageGun : MonoBehaviour
     [SerializeField] RaycastHit rayHit;
     [SerializeField] LayerMask whatIsEnemy;
 
+<<<<<<< Updated upstream
+=======
+    [SerializeField] AmmoType currentAmmoType;
+
+    [SerializeField] UnityEvent OnReload;
+
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip reloadSound;
+    GameObject shootClipSource;
+    GameObject reloadClipSource;
+
+    [SerializeField] ParticleSystem primaryParticles;
+    [SerializeField] ParticleSystem secondaryParticles;
+
+    enum AmmoType
+    {
+        normal,
+        enlarge,
+        shrink
+    }
+
+>>>>>>> Stashed changes
     //Graphics
     [SerializeField] GameObject muzzleFlash, bulletHoleGraphic;
     CamShake camShake;
@@ -84,7 +106,21 @@ public class DamageGun : MonoBehaviour
             Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag("Enemy"))
             {
+<<<<<<< Updated upstream
                 rayHit.collider.gameObject.GetComponent<Entity>().Health -= damage;
+=======
+                if(currentAmmoType == AmmoType.normal)
+                    rayHit.collider.gameObject.GetComponent<Entity>().Health -= damage;
+                else if(currentAmmoType == AmmoType.enlarge)
+                {
+                    gunBarrelTip.GetComponent<ParticleSystem>().Play();
+                    rayHit.collider.gameObject.GetComponent<Entity>().Enlarge(damage);
+                }
+                else if (currentAmmoType == AmmoType.shrink)
+                {
+                    rayHit.collider.gameObject.GetComponent<Entity>().Shrink(damage);
+                }
+>>>>>>> Stashed changes
             }
 
         }
@@ -93,8 +129,32 @@ public class DamageGun : MonoBehaviour
         camShake.Shake(camShakeDuration, camShakeMagnitude);
 
         //Graphics
+<<<<<<< Updated upstream
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
+=======
+        
+        GameObject bulletDecalClone = ObjectPool.Instance.GetPooledBulletDecals();
+        GameObject muzzleFlashClone = ObjectPool.Instance.GetPooledMuzzleFlashes();
+        if (bulletDecalClone != null)
+        {
+            bulletDecalClone.transform.position = rayHit.point;
+            bulletDecalClone.transform.rotation = Quaternion.Euler(0, 180, 0);
+            bulletDecalClone.SetActive(true);
+        }
+
+        if (muzzleFlashClone != null)
+        {
+            muzzleFlashClone.transform.position = gunBarrelTip.position;
+            muzzleFlashClone.transform.rotation = Quaternion.identity;
+            if (currentAmmoType == AmmoType.enlarge) muzzleFlashClone.transform.Find("Enlarge").gameObject.SetActive(true);
+            else if (currentAmmoType == AmmoType.shrink) muzzleFlashClone.transform.Find("Shrink").gameObject.SetActive(true);
+            muzzleFlashClone.SetActive(true);
+        }
+
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        //Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
+>>>>>>> Stashed changes
 
         bulletsLeft--;
         bulletsShot--;
@@ -104,6 +164,24 @@ public class DamageGun : MonoBehaviour
             Invoke("Shoot", timeBetweenShots);
     }
 
+<<<<<<< Updated upstream
+=======
+    public void PrimaryFire()
+    {
+        currentAmmoType = AmmoType.enlarge;
+
+        //primaryParticles.Play();
+        OnShoot();
+    }
+
+    public void SecondaryFire()
+    {
+        currentAmmoType = AmmoType.shrink;
+        //secondaryParticles.Play();
+        OnShoot();
+    }
+
+>>>>>>> Stashed changes
     private void ResetShot()
     {
         readyToShoot = true;
