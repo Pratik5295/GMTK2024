@@ -455,14 +455,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4408561583255722888, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
-      propertyPath: punchFreezeLength
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4408561583255722888, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
-      propertyPath: punchFreezeTimeScale
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 6784803214133769141, guid: 7129ec1bb0f089e4bbc992f3e3e660d1, type: 3}
       propertyPath: player
       value: 

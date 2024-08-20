@@ -594,8 +594,8 @@ MonoBehaviour:
   punchDamage: 1
   punchCooldown: 0.5
   punchTiming: 0.3
-  punchFreezeTimeScale: 0.1
-  punchFreezeLength: 0.25
+  punchFreezeTimeScale: 0.05
+  punchFreezeLength: 0.1
   canHold: 0
   punchSound: {fileID: 0}
   successfulHitSound: {fileID: 0}
