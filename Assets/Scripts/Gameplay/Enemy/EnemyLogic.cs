@@ -1,102 +1,89 @@
+using Unity.Mathematics;
+
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyLogic : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private EnemyType _enemyType;
-    [SerializeField] private float _speed = 3.5f;
-    [SerializeField] private float _attackRange = 1;
+    [SerializeField] private Transform _bulletSpawner;
+    [SerializeField] private AttackStategy _attackStrategy;
+
     [SerializeField] private float _damageDealt = 1;
+    [SerializeField] private float _attackCooldown = 10;
+    [SerializeField] private float _chargeUp = 1;
+
     private Vector3 _originalSize;
-    private Entity _entity;
-    private float _originalHealth;
     private float _chaseTimer = 0;
     private float _timeToChase = 0.25f;
-    private float _attackCooldown = 2;
     private bool _hasAttacked = false;
+    private float _originalSpeed;
     public EnemyType EnemyType {get{return _enemyType;}}
     private void OnEnable()
     {
-        _originalHealth = _entity.Health;
-        _agent.stoppingDistance = _attackRange;
+        _originalSpeed = _agent.speed;
+        _attackStrategy = Instantiate(_attackStrategy);
         _originalSize = transform.localScale;
-        _agent.speed = _speed;
         transform.localScale = _originalSize;
-        _entity.Health = _originalHealth;
     }
     private void Start()
     {
-        _originalHealth = _entity.Health;
-        _agent.stoppingDistance = _attackRange;
+        _originalSpeed = _agent.speed;
+        _attackStrategy = Instantiate(_attackStrategy);
         _originalSize = transform.localScale;
-        _agent.speed = _speed;
         transform.localScale = _originalSize;
-        _entity.Health = _originalHealth;
     }
     private void Update()
     {
         _chaseTimer += Time.deltaTime;
+        transform.LookAt(PlayerMovement.player.transform);
         if(PlayerMovement.player != null)
         {
             if(_chaseTimer >= _timeToChase)
             {
                 _chaseTimer = 0;
-                _agent.SetDestination(PlayerMovement.player.transform.position);
-                if(_agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked)
+                if(_agent.enabled)
                 {
-                    Debug.Log("attack should be called");
-                    //Attack();
+                    _agent.SetDestination(PlayerMovement.player.transform.position);
+                    if(_hasAttacked == false) Observer.Instance.EnemyChase(gameObject);
+                }
+                if(_agent.enabled && _agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked)
+                {
+                    Observer.Instance.WaitToAttack(gameObject);
+                    Invoke("WaitToAttack", _chargeUp);
                 }
             }
         }
     }
+    private void WaitToAttack()
+    {
+        _agent.speed = 0;
+        Attack();
+    }
     private void Attack()
     {
-        Debug.Log("attack being called");
+        //_capsuleCollider.isTrigger = true;
+        _capsuleCollider.excludeLayers = LayerMask.GetMask("Player");
+        _agent.speed = 0;
         _hasAttacked = true;
-        switch(_enemyType)
-        {
-            case EnemyType.Basic:
-                MeeleeAttack();
-                break;
-            case EnemyType.Fast:
-                RangedAttack();
-                break;
-            case EnemyType.Big:
-                RangedAttack();
-                break;
-            default:
-                break;
-        }
+        Observer.Instance.EnemyAttack(gameObject);
+        _attackStrategy.Attack(new AttackStategyParamethers(_agent, _bulletSpawner, PlayerMovement.player.transform, _damageDealt, this));
         Invoke("ResetAttack", _attackCooldown);
+        
     }
-    private void MeeleeAttack()
+    private void ResetAttack()
     {
-        Debug.Log("meelee attack being called");
-        //_meeleeAttackCollider.isTrigger = false;
-    }
-    private void RangedAttack()
-    {
-        Debug.Log("ranged attack being called");
-        Vector3 directionToShoot = _agent.transform.position - PlayerMovement.player.transform.position;
-        GameObject projectile = ObjectPool.Instance.GetPooledEnemyProjectiles();
-        if(projectile != null)
-        {
-            Debug.Log("projectile not null");
-            projectile.transform.position = transform.position;
-            projectile.transform.rotation = Quaternion.identity;
-            projectile.SetActive(true);
-        } else
-        {
-            Debug.Log("projectile was null");
-        }
-        ProjectileMover projectileMover = projectile.GetComponent<ProjectileMover>();
-        projectileMover.Direction = -directionToShoot;
-    }
-    private void ResetAttack(float attackCooldown)
-    {
-        Debug.Log("reset attack being called");
+        //_capsuleCollider.isTrigger = false;
+        _capsuleCollider.excludeLayers = _capsuleCollider.includeLayers;
+        _agent.speed = _originalSpeed;
         _hasAttacked = false;
+        Observer.Instance.EnemyAttackEnded(gameObject);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(_bulletSpawner.transform.position, 0.5f);
     }
 }

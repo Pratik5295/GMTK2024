@@ -101,7 +101,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -245,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 1954325141989627387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 0.0763, z: 0}
+  m_LocalPosition: {x: -0.266, y: 0.0763, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 2391509101257196261}
   m_Layer: 3
   m_Name: Pistol
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2391509101257196261}
         m_TargetAssemblyTypeName: DamageGun, Assembly-CSharp
-        m_MethodName: OnShoot
+        m_MethodName: PrimaryFire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -633,13 +633,10 @@ MonoBehaviour:
         m_CallState: 2
   OnAltGunShoot:
     m_PersistentCalls:
-      m_Calls: []
-  OnAmmoTypeSwitched:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2391509101257196261}
         m_TargetAssemblyTypeName: DamageGun, Assembly-CSharp
-        m_MethodName: SwitchAmmoType
+        m_MethodName: SecondaryFire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -649,6 +646,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnAmmoTypeSwitched:
+    m_PersistentCalls:
+      m_Calls: []
   switchAmmoTypeKey: 102
   FireCooldown: 0
   altFireCooldown: 0
@@ -667,7 +667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   timeBetweenShooting: 0.25
-  spread: 0.01
   range: 50
   reloadTime: 1
   timeBetweenShots: 0.1
@@ -679,7 +678,7 @@ MonoBehaviour:
   gunBarrelTip: {fileID: 4018202067683005450}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 592
+    m_Bits: 33360
   currentAmmoType: 0
   muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
   bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
@@ -861,7 +860,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1176,7 +1175,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1357,7 +1356,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30

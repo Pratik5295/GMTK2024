@@ -9,7 +9,8 @@ public class DamageGun : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
     [SerializeField] float timeBetweenShooting = 0f;
-    [SerializeField] float spread = .05f, range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
+    //float spread = .05f;
+    [SerializeField] float range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
     [SerializeField] int magazineSize = 10, bulletsPerTap = 1;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] TMP_Text ammoTypeText;
@@ -59,12 +60,12 @@ public class DamageGun : MonoBehaviour
 
     public void OnShoot()
     {
-        Debug.Log("OnShoot");
+        //Debug.Log("OnShoot");
         if (readyToShoot && !reloading && bulletsLeft > 0)
         {
             bulletsShot = bulletsPerTap;
             Shoot();
-            
+
         }
         else if (readyToShoot && !reloading && bulletsLeft == 0)
         {
@@ -74,11 +75,11 @@ public class DamageGun : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Shot");
+        //Debug.Log("Shot");
         readyToShoot = false;
 
-        GameObject player = PlayerMovement.player.gameObject;
-
+        //GameObject player = PlayerMovement.player.gameObject;
+        /*
         //Spread
         bool ifMoving = player.GetComponent<Rigidbody>().velocity.magnitude > 0;
 
@@ -86,13 +87,13 @@ public class DamageGun : MonoBehaviour
 
         float x = Random.Range(-tempSpread, tempSpread);
         float y = Random.Range(-tempSpread, tempSpread);
-
+        */
         //Calculate the spread direction
-        Vector3 direction = PlayerCamera.forward + new Vector3(x, y, 0);
+        Vector3 direction = PlayerCamera.forward;// + new Vector3(x, y, 0); //<-- for spread
 
         if (Physics.Raycast(PlayerCamera.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag("Enemy"))
             {
                 if(currentAmmoType == AmmoType.normal)
@@ -113,8 +114,25 @@ public class DamageGun : MonoBehaviour
         camShake.Shake(camShakeDuration, camShakeMagnitude);
 
         //Graphics
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
+        
+        GameObject bulletDecalClone = ObjectPool.Instance.GetPooledBulletDecals();
+        GameObject muzzleFlashClone = ObjectPool.Instance.GetPooledMuzzleFlashes();
+        if (bulletDecalClone != null)
+        {
+            bulletDecalClone.transform.position = rayHit.point;
+            bulletDecalClone.transform.rotation = Quaternion.Euler(0, 180, 0);
+            bulletDecalClone.SetActive(true);
+        }
+
+        if (muzzleFlashClone != null)
+        {
+            muzzleFlashClone.transform.position = gunBarrelTip.position;
+            muzzleFlashClone.transform.rotation = Quaternion.identity;
+            muzzleFlashClone.SetActive(true);
+        }
+
+        //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+        //Instantiate(muzzleFlash, gunBarrelTip.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
@@ -122,6 +140,18 @@ public class DamageGun : MonoBehaviour
 
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
+    }
+
+    public void PrimaryFire()
+    {
+        currentAmmoType = AmmoType.enlarge;
+        OnShoot();
+    }
+
+    public void SecondaryFire()
+    {
+        currentAmmoType = AmmoType.shrink;
+        OnShoot();
     }
 
     private void ResetShot()

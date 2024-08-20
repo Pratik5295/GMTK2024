@@ -5,7 +5,7 @@ using UnityEngine;
 public class RemoveTimer : MonoBehaviour
 {
     [SerializeField] float removalDelay;
-    void Start()
+    void OnEnable()
     {
         Invoke("Disable", removalDelay);
     }
