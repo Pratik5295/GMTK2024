@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -10,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Time Variables")]
     [SerializeField] private float _countDown = 2;
     private int _currentWaveIndex = 0;
-    private bool _readyToCountDown;
+    private bool _readyToCountDown, infiniteWave;
     public int CurrentWaveIndex {get{return _currentWaveIndex;}}
 
     private void Start()
@@ -24,10 +25,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("wave index: " + _currentWaveIndex + " >= length" + _waves.Length + " = " + (_currentWaveIndex >= _waves.Length));
         //if we reach the last wave, add a new wave equal to the last one
-        if(_currentWaveIndex >= _waves.Length)
+        if(_currentWaveIndex >= _waves.Length && !infiniteWave)
         {
             _currentWaveIndex --;
+            infiniteWave = true;
             //Debug.Log("Add logic to go infinite here");
             //return;
         }
@@ -48,7 +51,10 @@ public class EnemySpawner : MonoBehaviour
         if(_waves[_currentWaveIndex]._enemiesLeft == 0)
         {
             _readyToCountDown = true;
-            _currentWaveIndex ++;
+            if (!infiniteWave)
+            {
+                _currentWaveIndex++;
+            }
         }
     }
     private IEnumerator SpawnWave()
