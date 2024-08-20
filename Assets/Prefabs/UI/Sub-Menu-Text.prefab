@@ -188,7 +188,10 @@ MonoBehaviour:
     Button click.
 
     Use a melee blow by pressing E when the golem are small enough
-    to kill and the spiders are big enough to hit.'
+    to kill and the spiders are big enough to hit.
+
+    Press ''P'' to Pause the
+    Game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
   m_sharedMaterial: {fileID: 4536887480961452444, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
