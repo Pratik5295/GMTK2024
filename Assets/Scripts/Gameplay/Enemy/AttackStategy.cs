@@ -9,13 +9,15 @@ public class AttackStategyParamethers
 {
     public NavMeshAgent Agent {get;}
     public Transform BulletSpawner {get;}
+    public Transform PlayerTransform {get;}
     public float DamageDealt {get;}
     public MonoBehaviour MonoBehaviour {get;}
-    public AttackStategyParamethers(NavMeshAgent agent, Transform bulletSpawner, float damageDealt, MonoBehaviour monobehaviour)
+    public AttackStategyParamethers(NavMeshAgent agent, Transform bulletSpawner, Transform playerTransform, float damageDealt, MonoBehaviour monobehaviour)
     {
         Agent = agent;
         BulletSpawner = bulletSpawner;
-        MonoBehaviour = monobehaviour;
+        PlayerTransform = playerTransform;
         DamageDealt = damageDealt;
+        MonoBehaviour = monobehaviour;
     }
 }
