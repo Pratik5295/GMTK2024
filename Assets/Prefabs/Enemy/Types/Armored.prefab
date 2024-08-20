@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2132871304984781575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.111, z: 0.701}
+  m_LocalPosition: {x: 0, y: -0.054, z: 0.701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9077270099228007054}
   - component: {fileID: 245505314944994127}
   m_Layer: 15
-  m_Name: Humanoid
+  m_Name: Armored
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 1.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -128,10 +128,9 @@ MonoBehaviour:
   _agent: {fileID: 2045771202418415967}
   _capsuleCollider: {fileID: 6608729983348137890}
   _enemyType: 0
-  _bulletSpawner: {fileID: 1916759138925271415}
   _attackStrategy: {fileID: 11400000, guid: 8cfbe85889619f14295e54c6af504a11, type: 2}
   _damageDealt: 50
-  _attackCooldown: 3
+  _attackCooldown: 0.5
   _chargeUp: 0.25
 --- !u!114 &245505314944994127
 MonoBehaviour:
@@ -225,6 +224,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: -4331497292602783643, guid: 33a6d28b683147746ab82f826661b9e4, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -3642214361789468422, guid: 33a6d28b683147746ab82f826661b9e4, type: 3}
       propertyPath: m_Layer
       value: 15
@@ -232,6 +235,10 @@ PrefabInstance:
     - target: {fileID: -3484171009071075815, guid: 33a6d28b683147746ab82f826661b9e4, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -3484171009071075815, guid: 33a6d28b683147746ab82f826661b9e4, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: -2634398991371037508, guid: 33a6d28b683147746ab82f826661b9e4, type: 3}
       propertyPath: m_Layer

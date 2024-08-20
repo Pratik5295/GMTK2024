@@ -8,6 +8,7 @@ public class JumpAttack : AttackStategy
     public LayerMask playerLayer;
     public float _jumpSpeed;
     public AnimationCurve _heightCurve;
+    private Vector3 trackedPlayerPosition;
     public override void Attack(AttackStategyParamethers e)
     {
         e.MonoBehaviour.StartCoroutine(JumpLogic(e.Agent, e.PlayerTransform, e.DamageDealt));
@@ -19,15 +20,19 @@ public class JumpAttack : AttackStategy
         Vector3 startingPosiiton = agent.transform.position;
         RaycastHit hit;
 
+
+        bool playerPositionWasTaken = false;
+        if(!playerPositionWasTaken) trackedPlayerPosition = playerTransform.position;
+
         for(float time = 0; time < 1; time += Time.deltaTime * _jumpSpeed)
         {
             //Make the enemie position lerp towards the player
-            agent.transform.position = Vector3.Lerp(startingPosiiton,playerTransform.position, time)
+            agent.transform.position = Vector3.Lerp(startingPosiiton, trackedPlayerPosition, time)
             + Vector3.up * _heightCurve.Evaluate(time);
 
             //Make sure the enemie is facing the player
             agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation,
-            Quaternion.LookRotation(playerTransform.position - agent.transform.position), time);
+            Quaternion.LookRotation(trackedPlayerPosition - agent.transform.position), time);
 
             //Detect collision with player
             float attackRadius = 0.5f;
@@ -39,15 +44,15 @@ public class JumpAttack : AttackStategy
                     //Debug.Log("Jump attack hit player");
                     PlayerHealth playerHealth = hit.collider.GetComponentInParent<PlayerHealth>();
                     playerHealth.ReduceHealth(damageDealt);
-                }
+                    yield return null;
+                } 
             }
-
             yield return null;
         }
 
         //Reenable agent since we manually moved it and make sure it understands where it is now
         agent.enabled = true;
-        if(NavMesh.SamplePosition(playerTransform.position, out NavMeshHit navMeshHit, 1f, agent.areaMask))
+        if(NavMesh.SamplePosition(trackedPlayerPosition, out NavMeshHit navMeshHit, 3f, agent.areaMask) && agent.isOnNavMesh)
         {
             agent.Warp(navMeshHit.position);
         }

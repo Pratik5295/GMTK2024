@@ -1,45 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPositions;
-    public Wave[] _waves;
+    public List<Wave> _waves = new List<Wave>();
 
     [Header("Time Variables")]
     [SerializeField] private float _countDown = 2;
     private int _currentWaveIndex = 0;
-    private bool _readyToCountDown, infiniteWave;
+    private bool _readyToCountDown;
     public int CurrentWaveIndex {get{return _currentWaveIndex;}}
 
     private void Start()
     {
         _readyToCountDown = true;
 
-        for(int i = 0; i < _waves.Length; i++)
+        for(int i = 0; i < _waves.Count; i++)
         {
-            _waves[i]._enemiesLeft = _waves[i]._enemies.Length;
+            _waves[i]._enemiesLeft = _waves[i]._enemies.Count;
         }
     }
     private void Update()
     {
-        Debug.Log("wave index: " + _currentWaveIndex + " >= length" + _waves.Length + " = " + (_currentWaveIndex >= _waves.Length));
+        Debug.Log("wave index: " + _currentWaveIndex + " >= length" + _waves.Count + " = " + (_currentWaveIndex >= _waves.Count));
         //if we reach the last wave, add a new wave equal to the last one
-        if(_currentWaveIndex >= _waves.Length && !infiniteWave)
+        if(_currentWaveIndex + 1 > _waves.Count - 1)
         {
-            _currentWaveIndex --;
-            infiniteWave = true;
-            //Debug.Log("Add logic to go infinite here");
-            //return;
+            if(_waves[_currentWaveIndex]._enemiesLeft == 0)
+            {
+                Debug.LogError("you won the game!!!");
+                return;
+            } 
         }
 
         if(_readyToCountDown == true)
         {
             _countDown -= Time.deltaTime;
         }
-        if(_countDown <= 0)
+        if(_countDown <= 0 )
         {
             _readyToCountDown = false;
             _countDown = _waves[_currentWaveIndex]._timeToNextWave;
@@ -51,17 +52,34 @@ public class EnemySpawner : MonoBehaviour
         if(_waves[_currentWaveIndex]._enemiesLeft == 0)
         {
             _readyToCountDown = true;
-            if (!infiniteWave)
-            {
-                _currentWaveIndex++;
-            }
+            _currentWaveIndex++;
         }
+    }
+    private void CreateNewWave()
+    {
+        float additionalEnemies = 3;
+        Wave lastWave = _waves.Last();
+
+        Wave newWave = new Wave
+        {
+            _enemies = new List<EnemyLogic>(lastWave._enemies),
+            _timeToNextEnemy = lastWave._timeToNextEnemy,
+            _timeToNextWave = lastWave._timeToNextEnemy
+        };
+
+        for(int i = 0; i < additionalEnemies; i++)
+        {
+            int randomEnemiesToAdd = Random.Range(0, lastWave._enemies.Count);
+            newWave._enemies.Add(lastWave._enemies[randomEnemiesToAdd]);
+        }
+
+        _waves.Add(newWave);
     }
     private IEnumerator SpawnWave()
     {
-        if(_currentWaveIndex < _waves.Length)
+        if(_currentWaveIndex < _waves.Count)
         {
-            for(int i = 0; i <  _waves[_currentWaveIndex]._enemies.Length; i++)
+            for(int i = 0; i <  _waves[_currentWaveIndex]._enemies.Count; i++)
             {
                 int chosenIndex = Random.Range(0, _spawnPositions.Count);
                 
@@ -83,19 +101,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.SetActive(true);
         }
     }
-    private bool SpawnWithingCameraView(Transform chosenSpawn)
-    {   
-        //Checks if the enemies are within the camera's view
-        Vector3 spawnPosition = new Vector3(chosenSpawn.transform.position.x, chosenSpawn.transform.position.y, chosenSpawn.transform.position.z);
-        Camera virtualCamera = Camera.main;
-        Vector3 withinCameraView = virtualCamera.WorldToViewportPoint(spawnPosition);
-
-        if (withinCameraView.x < 0f || withinCameraView.x > 1f || withinCameraView.y < 0f || withinCameraView.z <= 0f)
-        {
-            return true;
-        }
-        return false;
-    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -109,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
 [System.Serializable]
 public class Wave
 {
-    public EnemyLogic[] _enemies;
+    public List<EnemyLogic> _enemies = new List<EnemyLogic>();
     public float _timeToNextEnemy = 2;
     public float _timeToNextWave = 2;
 
