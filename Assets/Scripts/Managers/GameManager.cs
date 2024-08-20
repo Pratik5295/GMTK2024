@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public GameState State => state;
     public bool IsPaused => isPaused;
 
+    [SerializeField] private PlayerHealth player;
+
     //Score system section
     [SerializeField] private int score;
     public int Score => score;
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
     {
         //Will be fired when the player has died
         SetState(GameState.GAMEOVER);
+
+        Time.timeScale = 0f;
     }
 
     public void PauseGame()
@@ -78,6 +82,19 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SetState(GameState.DEFAULT);
+    }
+
+    public void SetPlayer(PlayerHealth _player)
+    {
+        player = _player;
+        player.OnPlayerDeathEvent += OnPlayerDeathEventHandler;
+    }
+
+    private void OnPlayerDeathEventHandler()
+    {
+        player.OnPlayerDeathEvent -= OnPlayerDeathEventHandler;
+
+        GameOver();
     }
 
 
