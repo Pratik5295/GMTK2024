@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [Header("Foreground Audio Sources")]
     [SerializeField] private List<AudioSource> foregroundSources;
 
+    public float BG_Volume => backgroundSource.volume;
+
     private void Awake()
     {
         if (Instance == null)
