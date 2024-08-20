@@ -22,8 +22,7 @@ public class Gun : MonoBehaviour
     private float CurrentAltCooldown;
 
     bool isPlayerActing;
-
-    
+    private bool reloading;
 
     void Start()
     {
@@ -36,7 +35,7 @@ public class Gun : MonoBehaviour
         
         if (Automatic)
         {
-            if (Input.GetMouseButton(0) && !isPlayerActing)
+            if (Input.GetMouseButton(0) && !isPlayerActing && !reloading)
             {
                 if (CurrentCooldown <= 0f)
                 {
@@ -45,7 +44,7 @@ public class Gun : MonoBehaviour
                     CurrentCooldown = FireCooldown;
                 }
             }
-            if (Input.GetMouseButton(1) && !isPlayerActing)
+            if (Input.GetMouseButton(1) && !isPlayerActing && !reloading)
             {
                 if (CurrentAltCooldown <= 0f)
                 {
@@ -57,7 +56,7 @@ public class Gun : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0) && !isPlayerActing)
+            if (Input.GetMouseButtonDown(0) && !isPlayerActing && !reloading)
             {
                 if (CurrentCooldown <= 0f)
                 {
@@ -66,7 +65,7 @@ public class Gun : MonoBehaviour
                     CurrentCooldown = FireCooldown;
                 }
             }
-            if (Input.GetMouseButton(1) && !isPlayerActing)
+            if (Input.GetMouseButton(1) && !isPlayerActing && !reloading)
             {
                 if (CurrentAltCooldown <= 0f)
                 {
@@ -87,20 +86,21 @@ public class Gun : MonoBehaviour
         StartCoroutine(Reload());
     }
 
-    public bool OnPunch()
+    public void OnPunch()
     {
-        if (isPlayerActing) return false;
-        else
-        {
+        //if (isPlayerActing) return false;
+        //else
+        //{
             StartCoroutine(Punch());
-            return true;
-        }
+            //return true;
+        //}
         
     }
 
     public IEnumerator Reload()
     {
         isPlayerActing = true;
+        reloading = true;
         armAC.SetBool("fire", false);
         armAC.SetBool("reload", true);
         armAC.SetBool("punch", false);
@@ -109,6 +109,7 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
 
         isPlayerActing = false;
+        reloading = false;
         armAC.SetBool("reload", false);
         gunAC.SetBool("reload", false);
     }

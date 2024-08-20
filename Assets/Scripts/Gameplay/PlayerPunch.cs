@@ -43,6 +43,7 @@ public class PlayerPunch : MonoBehaviour
                 if (currentCooldown <= 0f)
                 {
                     OnPunch?.Invoke();
+                    FindObjectOfType<DamageGun>().StopActions();
                     AudioManager.Instance.PlayForeground(punchSound);
                     StartCoroutine(Punch());
                     currentCooldown = punchCooldown;
@@ -57,6 +58,8 @@ public class PlayerPunch : MonoBehaviour
                 if (currentCooldown <= 0f)
                 {
                     OnPunch?.Invoke();
+                    FindObjectOfType<DamageGun>().StopActions();
+                    AudioManager.Instance.PlayForeground(punchSound);
                     StartCoroutine(Punch());
                     currentCooldown = punchCooldown;
                 }
@@ -77,6 +80,7 @@ public class PlayerPunch : MonoBehaviour
                 //Debug.Log("Trigger - Enemy scaled and damaged");
                 if (enemy.enemyType == Entity.EnemyType.enlarge)
                 {
+                    GameObject.FindObjectOfType<DamageGun>();
                     if (successfulHitSound != null) AudioManager.Instance.PlayForeground(successfulHitSound);
                     StartCoroutine(PunchFreeze());
                     enemy.Health -= punchDamage;

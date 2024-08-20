@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
 
     #region Foreground Audio Sources
 
-    public void PlayForeground(AudioClip clip, float volume = 1f)
+    public GameObject PlayForeground(AudioClip clip, float volume = 1f)
     {
         AudioSource availableSource = foregroundSources.Find(source => !source.isPlaying);
         if (availableSource != null)
@@ -54,10 +54,12 @@ public class AudioManager : MonoBehaviour
             availableSource.clip = clip;
             availableSource.volume = volume;
             availableSource.Play();
+            return availableSource.gameObject;
         }
         else
         {
             Debug.LogWarning("No available audio source to play the clip.");
+            return null;
         }
     }
 

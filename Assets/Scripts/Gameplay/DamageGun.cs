@@ -33,6 +33,8 @@ public class DamageGun : MonoBehaviour
 
     [SerializeField] AudioClip shootSound;
     [SerializeField] AudioClip reloadSound;
+    GameObject shootClipSource;
+    GameObject reloadClipSource;
 
     enum AmmoType
     {
@@ -96,7 +98,10 @@ public class DamageGun : MonoBehaviour
         */
         //Calculate the spread direction
 
-        if (shootSound != null) AudioManager.Instance.PlayForeground(shootSound, .1f);
+        if (shootSound != null)
+        {
+            shootClipSource = AudioManager.Instance.PlayForeground(shootSound, .1f);
+        }
 
         Vector3 direction = PlayerCamera.forward;// + new Vector3(x, y, 0); //<-- for spread
 
@@ -171,15 +176,27 @@ public class DamageGun : MonoBehaviour
     void Reload()
     {
         reloading = true;
-        if (reloadSound != null) AudioManager.Instance.PlayForeground(reloadSound);
+        if (reloadSound != null)
+        {
+            reloadClipSource = AudioManager.Instance.PlayForeground(reloadSound);
+        }
         OnReload?.Invoke();
         Invoke("ReloadFinished", reloadTime);
     }
 
     void ReloadFinished()
     {
+        if (!reloading) return;
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    public void StopActions()
+    {
+        Debug.Log("Actions Stopped");
+        reloading = false;
+        reloadClipSource.GetComponent<AudioSource>().Stop();
+        shootClipSource.GetComponent<AudioSource>().Stop();
     }
 
     public void SwitchAmmoType()
