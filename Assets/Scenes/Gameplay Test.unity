@@ -360,6 +360,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
+      propertyPath: _enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 9077270099228007054, guid: 00b83c9dd77f00043926a7928c443740, type: 3}
+    - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
+      propertyPath: _enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9077270099228007054, guid: 00b83c9dd77f00043926a7928c443740, type: 3}
+    - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
       propertyPath: _waves.Array.data[0]._timeToNextWave
       value: 3
       objectReference: {fileID: 0}
@@ -1774,7 +1782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
       propertyPath: _enemyPoolItems.Array.data[1].enemyType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
       propertyPath: _enemyPoolItems.Array.data[0].enemyPrefab
@@ -1783,7 +1791,7 @@ PrefabInstance:
     - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
       propertyPath: _enemyPoolItems.Array.data[1].enemyPrefab
       value: 
-      objectReference: {fileID: 4499277650885194159, guid: becbe9920a5d9a64e826e7e5ed9bac0c, type: 3}
+      objectReference: {fileID: 4499277650885194159, guid: 00b83c9dd77f00043926a7928c443740, type: 3}
     - target: {fileID: 6690108132823559266, guid: c807defa7d2bbb9419c1c6f83b1c28ec, type: 3}
       propertyPath: _enemyPoolItems.Array.data[0].amountToPool
       value: 20
