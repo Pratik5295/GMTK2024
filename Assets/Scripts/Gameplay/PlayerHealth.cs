@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        maxHealth = MetaConstants.MaxPlayerHealth;
         health = maxHealth;
 
         isAlive = IsAlive();
@@ -31,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReduceHealth(float amount)
     {
+        Debug.Log("called");
         if (!IsAlive() || invincible) return;
 
         health -= amount;

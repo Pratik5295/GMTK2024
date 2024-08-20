@@ -344,6 +344,14 @@ PrefabInstance:
       value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
+      propertyPath: enemyPerWave
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
+      propertyPath: maxEnemyPerWave
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2008290855008081913, guid: d52d4a127db62fe4c881f47758c8d6cc, type: 3}
       propertyPath: _waves.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1874,6 +1882,14 @@ PrefabInstance:
     - target: {fileID: 3186593312873579732, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
+      propertyPath: invincible
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
