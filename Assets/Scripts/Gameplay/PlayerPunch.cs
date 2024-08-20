@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerPunch : MonoBehaviour
 {
     Vector3 originalPos;
+    [SerializeField] UnityEvent OnPunch;
     [SerializeField] KeyCode punchButton = KeyCode.E;
 
     [SerializeField] float punchDamage = 1f;
@@ -40,7 +42,9 @@ public class PlayerPunch : MonoBehaviour
             {
                 if (currentCooldown <= 0f)
                 {
-                    Punch();
+                    OnPunch?.Invoke();
+                    AudioManager.Instance.PlayForeground(punchSound);
+                    StartCoroutine(Punch());
                     currentCooldown = punchCooldown;
                 }
             }
@@ -52,6 +56,7 @@ public class PlayerPunch : MonoBehaviour
             {
                 if (currentCooldown <= 0f)
                 {
+                    OnPunch?.Invoke();
                     StartCoroutine(Punch());
                     currentCooldown = punchCooldown;
                 }
@@ -72,12 +77,13 @@ public class PlayerPunch : MonoBehaviour
                 //Debug.Log("Trigger - Enemy scaled and damaged");
                 if (enemy.enemyType == Entity.EnemyType.enlarge)
                 {
+                    if (successfulHitSound != null) AudioManager.Instance.PlayForeground(successfulHitSound);
                     StartCoroutine(PunchFreeze());
                     enemy.Health -= punchDamage;
                 }
                 if (enemy.enemyType == Entity.EnemyType.shrink)
                 {
-                    
+                    if (failedHitSound != null) AudioManager.Instance.PlayForeground(failedHitSound);
                 }
 
             }

@@ -4,6 +4,7 @@ using System.Xml;
 
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DamageGun : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class DamageGun : MonoBehaviour
     [SerializeField] float range = 50f, reloadTime = 1f, timeBetweenShots = .1f;
     [SerializeField] int magazineSize = 10, bulletsPerTap = 1;
     [SerializeField] TMP_Text ammoText;
-    [SerializeField] TMP_Text ammoTypeText;
+    //[SerializeField] TMP_Text ammoTypeText;
     int bulletsLeft, bulletsShot;
 
 
@@ -27,6 +28,11 @@ public class DamageGun : MonoBehaviour
     [SerializeField] LayerMask whatIsEnemy;
 
     [SerializeField] AmmoType currentAmmoType;
+
+    [SerializeField] UnityEvent OnReload;
+
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip reloadSound;
 
     enum AmmoType
     {
@@ -55,7 +61,7 @@ public class DamageGun : MonoBehaviour
 
         //Set Ammo Text
         ammoText.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
-        ammoTypeText.SetText(CurrentAmmoTypeText());
+        //ammoTypeText.SetText(CurrentAmmoTypeText());
     }
 
     public void OnShoot()
@@ -89,6 +95,9 @@ public class DamageGun : MonoBehaviour
         float y = Random.Range(-tempSpread, tempSpread);
         */
         //Calculate the spread direction
+
+        if (shootSound != null) AudioManager.Instance.PlayForeground(shootSound, .1f);
+
         Vector3 direction = PlayerCamera.forward;// + new Vector3(x, y, 0); //<-- for spread
 
         if (Physics.Raycast(PlayerCamera.position, direction, out rayHit, range, whatIsEnemy))
@@ -162,6 +171,8 @@ public class DamageGun : MonoBehaviour
     void Reload()
     {
         reloading = true;
+        if (reloadSound != null) AudioManager.Instance.PlayForeground(reloadSound);
+        OnReload?.Invoke();
         Invoke("ReloadFinished", reloadTime);
     }
 
