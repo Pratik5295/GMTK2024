@@ -1255,15 +1255,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6990020648122686607, guid: a2f637541b7d9cc44912bb22b13799d4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990020648122686607, guid: a2f637541b7d9cc44912bb22b13799d4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990020648122686607, guid: a2f637541b7d9cc44912bb22b13799d4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990020648122686607, guid: a2f637541b7d9cc44912bb22b13799d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1321,6 +1321,10 @@ PrefabInstance:
       propertyPath: healthBlob
       value: 
       objectReference: {fileID: 6785586813093395211}
+    - target: {fileID: 8993102265861425106, guid: a2f637541b7d9cc44912bb22b13799d4, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8106688895637452707, guid: c6afc901100e0c64592391a21c1725c5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
