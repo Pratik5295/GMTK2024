@@ -11,7 +11,7 @@ public class Stomp1 : MonoBehaviour
     [SerializeField] AudioClip successfulHitSound;
     [SerializeField] AudioClip failedHitSound;
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         //Debug.Log("On Trigger");
         if (col.gameObject.CompareTag("Enemy"))
@@ -28,4 +28,6 @@ public class Stomp1 : MonoBehaviour
             }
         }
     }
+
+
 }

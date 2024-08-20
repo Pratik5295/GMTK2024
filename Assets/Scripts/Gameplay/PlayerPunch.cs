@@ -58,7 +58,7 @@ public class PlayerPunch : MonoBehaviour
         currentCooldown -= Time.deltaTime;
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         //Debug.Log("On Trigger");
         if (col.gameObject.CompareTag("Enemy"))
