@@ -19,7 +19,7 @@ public class Observer : MonoBehaviour
         }
     }
     public event EventHandler<EnemyEventArgs> OnEnemyAttackEvent;
-    public event EventHandler<EnemyEventArgs> OnAttackEndedEvent;
+    //public event EventHandler<EnemyEventArgs> OnAttackEndedEvent;
     public event EventHandler<EnemyEventArgs> OnEnemyChaseEvent;
     public event EventHandler<EnemyEventArgs> OnEnemyDeathEvent;
     public event EventHandler<EnemyEventArgs> OnWaitingToAttack;

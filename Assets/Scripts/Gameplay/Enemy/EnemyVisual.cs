@@ -15,7 +15,7 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
             Observer.Instance.OnEnemyAttackEvent += EnemyAttack;
             Observer.Instance.OnEnemyChaseEvent += EnemyChase;   
             Observer.Instance.OnWaitingToAttack += WaitToAttack;     
-            Observer.Instance.OnAttackEndedEvent += AttackEnded;  
+            //Observer.Instance.OnAttackEndedEvent += AttackEnded;  
         }
     }
 

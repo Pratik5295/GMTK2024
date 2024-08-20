@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -63,7 +65,7 @@ public class EnemyLogic : MonoBehaviour
     private void Attack()
     {
         //_capsuleCollider.isTrigger = true;
-        //_capsuleCollider.excludeLayers = LayerMask.NameToLayer("Player");
+        _capsuleCollider.excludeLayers = LayerMask.GetMask("Player");
         _agent.speed = 0;
         _hasAttacked = true;
         Observer.Instance.EnemyAttack(gameObject);
@@ -74,7 +76,7 @@ public class EnemyLogic : MonoBehaviour
     private void ResetAttack()
     {
         //_capsuleCollider.isTrigger = false;
-        //_capsuleCollider.includeLayers = LayerMask.NameToLayer("Player");
+        _capsuleCollider.excludeLayers = _capsuleCollider.includeLayers;
         _agent.speed = _originalSpeed;
         _hasAttacked = false;
         Observer.Instance.EnemyAttackEnded(gameObject);
