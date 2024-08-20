@@ -13,7 +13,7 @@ public class ProjectileAttack : AttackStategy
         Debug.Log("Ranged attack being called");
         Vector3 directionToShoot = PlayerMovement.player.transform.position - bulletSpawner.transform.position ;
         Debug.DrawRay(bulletSpawner.transform.position, directionToShoot, Color.red, 10);
-        if(!CheckForObstacles(bulletSpawner, directionToShoot)) SpawnBullet(bulletSpawner, damageDealt, directionToShoot);
+        //if(!CheckForObstacles(bulletSpawner, directionToShoot)) SpawnBullet(bulletSpawner, damageDealt, directionToShoot);
     }
     private bool CheckForObstacles(Transform bulletSpawner, Vector3 directionToShoot)
     {
@@ -34,7 +34,7 @@ public class ProjectileAttack : AttackStategy
             return false;
         }
     }
-    private void SpawnBullet(Transform bulletSpawner, float damageDealt, Vector3 directionToShoot)
+    /*private void SpawnBullet(Transform bulletSpawner, float damageDealt, Vector3 directionToShoot)
     {
         GameObject projectile = ObjectPool.Instance.GetPooledEnemyProjectiles();
         if(projectile != null)
@@ -47,5 +47,5 @@ public class ProjectileAttack : AttackStategy
         ProjectileMover projectileMover = projectile.GetComponent<ProjectileMover>();
         projectileMover.Direction = directionToShoot;
         projectileMover.DamageDealt = damageDealt;
-    }
+    }*/
 }
