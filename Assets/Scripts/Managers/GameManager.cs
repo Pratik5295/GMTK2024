@@ -106,5 +106,10 @@ public class GameManager : MonoBehaviour
         OnScoreChangeEvent?.Invoke(score);
     }
 
+    public void ResetScore()
+    {
+        score = 0;
+    }
+
     #endregion
 }

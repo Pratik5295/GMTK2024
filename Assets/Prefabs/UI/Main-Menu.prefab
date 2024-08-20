@@ -151,7 +151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Title
+  m_text: Slurpcore
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c21ca835d2085be4ea0f78217eb1e6dc, type: 2}
   m_sharedMaterial: {fileID: 5213976845937333821, guid: c21ca835d2085be4ea0f78217eb1e6dc, type: 2}
