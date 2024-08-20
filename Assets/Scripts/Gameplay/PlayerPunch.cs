@@ -93,8 +93,11 @@ public class PlayerPunch : MonoBehaviour
             }
             return;
         }
-        if(!isPunching)
+        if (isPunching)
+        {
             if (failedHitSound != null) AudioManager.Instance.PlayForeground(failedHitSound);
+        }
+            
     }
 
     IEnumerator Punch()
