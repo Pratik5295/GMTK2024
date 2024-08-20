@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
         health = maxHealth;
 
         isAlive = IsAlive();
+
+        GameManager.Instance.SetPlayer(this);
     }
 
     private bool IsAlive()

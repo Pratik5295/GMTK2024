@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc250de1d3a75f74b862d45df608d64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!95 &1354277029142956188
 Animator:
   serializedVersion: 5
@@ -253,8 +254,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button-Label
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
+  m_sharedMaterial: {fileID: 4536887480961452444, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
