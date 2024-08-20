@@ -7,9 +7,9 @@ public class Stomp1 : MonoBehaviour
     [SerializeField] float stompDamage = 1f;
 
     [Header("Audio")]
-    [SerializeField] AudioClip punchSound;
+    //[SerializeField] AudioClip crushingSound;
     [SerializeField] AudioClip successfulHitSound;
-    [SerializeField] AudioClip failedHitSound;
+    //[SerializeField] AudioClip failedHitSound;
 
     void OnTriggerStay(Collider col)
     {
@@ -23,6 +23,7 @@ public class Stomp1 : MonoBehaviour
                 //Debug.Log("Trigger - Enemy scaled and damaged");
                 if (enemy.enemyType == Entity.EnemyType.shrink)
                 {
+                    if (successfulHitSound != null) AudioManager.Instance.PlayForeground(successfulHitSound);
                     enemy.Health -= stompDamage;
                 }
             }
