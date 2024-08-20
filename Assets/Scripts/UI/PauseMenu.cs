@@ -21,7 +21,7 @@ public class PauseMenu : UIScreen
         //Only for testing, will be moved later
         if(!isActive)
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
             {
                 PauseGame();
             }
