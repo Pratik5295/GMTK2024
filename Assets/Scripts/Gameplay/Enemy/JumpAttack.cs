@@ -9,9 +9,10 @@ public class JumpAttack : AttackStategy
     public float _jumpSpeed;
     public AnimationCurve _heightCurve;
     private Vector3 trackedPlayerPosition;
+    public float attackRadius = 0.3f;
     public override void Attack(AttackStategyParamethers e)
     {
-        e.MonoBehaviour.StartCoroutine(JumpLogic(e.Agent, e.PlayerTransform, e.DamageDealt));
+        if(e.Agent.isActiveAndEnabled) e.MonoBehaviour.StartCoroutine(JumpLogic(e.Agent, e.PlayerTransform, e.DamageDealt));
     }
     private IEnumerator JumpLogic(NavMeshAgent agent, Transform playerTransform, float damageDealt)
     {
@@ -35,7 +36,6 @@ public class JumpAttack : AttackStategy
             Quaternion.LookRotation(trackedPlayerPosition - agent.transform.position), time);
 
             //Detect collision with player
-            float attackRadius = 0.5f;
             if(Physics.SphereCast(agent.transform.position, attackRadius, agent.transform.forward, 
             out hit, agent.stoppingDistance, playerLayer))
             {
