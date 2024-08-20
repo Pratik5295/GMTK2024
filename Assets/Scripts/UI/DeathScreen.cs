@@ -73,5 +73,15 @@ public class DeathScreen : UIScreen
         Show();
     }
 
+    public void RestartLevel()
+    {
+        GameSceneManager.Instance.LoadGameScene(SceneEnum.GAME);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 
 }
