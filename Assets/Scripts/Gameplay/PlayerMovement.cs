@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement player;
+    public static PlayerMovement player{get; private set;}
+    public GameObject cameraPos;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
-    [SerializeField] Transform orientation;
+    public Transform orientation;
 
     float horizontalInput;
     float verticalInput;
@@ -227,6 +228,8 @@ public class PlayerMovement : MonoBehaviour
 
         // turn gravity off while on slope
         rb.useGravity = !OnSlope();
+        Debug.Log("On Slope" + OnSlope());
+        FindObjectOfType<Stomp1>().gameObject.SetActive(!OnSlope());
     }
 
     private void SpeedControl()

@@ -14,14 +14,14 @@ TagManager:
   - UI
   - Ground
   - 
+  - Projectile
+  - Environment
+  - NoLight
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
   - 
   - 
   - 
