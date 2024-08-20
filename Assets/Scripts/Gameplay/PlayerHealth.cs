@@ -8,7 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool isAlive;
     [SerializeField] private bool invincible;
     [SerializeField] private bool wasJustHit = false;
-    [SerializeField] private float invincibilityDuration = 0.5f, invincibilityTimer = 0.5f;
+    [SerializeField] private float invincibilityDuration = 0.5f;
+    [SerializeField] private float invincibilityTimer = 0.5f;
 
 
     public Action OnPlayerDeathEvent;
