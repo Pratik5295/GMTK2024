@@ -1015,12 +1015,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
     - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19474395
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 4536887480961452444, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
     - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4279566137
+      value: 4278211122
       objectReference: {fileID: 0}
     - target: {fileID: 8766677225578935886, guid: 4691450ebc71e834b9b70943e4d30de4, type: 3}
       propertyPath: m_hasFontAssetChanged
