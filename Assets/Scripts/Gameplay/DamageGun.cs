@@ -195,8 +195,9 @@ public class DamageGun : MonoBehaviour
     {
         Debug.Log("Actions Stopped");
         reloading = false;
-        reloadClipSource.GetComponent<AudioSource>().Stop();
-        shootClipSource.GetComponent<AudioSource>().Stop();
+        if(reloadClipSource != null) reloadClipSource.GetComponent<AudioSource>().Stop();
+
+        if (shootClipSource != null) shootClipSource.GetComponent<AudioSource>().Stop();
     }
 
     public void SwitchAmmoType()
