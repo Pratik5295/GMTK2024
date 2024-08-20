@@ -60,7 +60,7 @@ public class DamageGun : MonoBehaviour
 
     public void OnShoot()
     {
-        Debug.Log("OnShoot");
+        //Debug.Log("OnShoot");
         if (readyToShoot && !reloading && bulletsLeft > 0)
         {
             bulletsShot = bulletsPerTap;
@@ -93,7 +93,7 @@ public class DamageGun : MonoBehaviour
 
         if (Physics.Raycast(PlayerCamera.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
             if (rayHit.collider.CompareTag("Enemy"))
             {
                 if(currentAmmoType == AmmoType.normal)
