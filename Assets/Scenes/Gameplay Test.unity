@@ -1888,6 +1888,14 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
+      propertyPath: isAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651399265189504355, guid: 9e00f4cc70e03b043918310c3122beae, type: 3}
       propertyPath: invincible
       value: 0
       objectReference: {fileID: 0}
