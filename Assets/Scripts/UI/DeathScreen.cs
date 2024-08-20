@@ -73,5 +73,17 @@ public class DeathScreen : UIScreen
         Show();
     }
 
+    public void RestartLevel()
+    {
+        Debug.Log("Restarting level");
+        Time.timeScale = 1f;
+        GameSceneManager.Instance.RestartLevel();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 
 }
