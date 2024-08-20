@@ -59,6 +59,13 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene((int) activeScene);
     }
 
+    public void RestartLevel()
+    {
+        Scene gameScene = SceneManager.GetActiveScene();
+
+        SceneManager.LoadScene(gameScene.name);
+    }
+
     private void OnGameStateChangedHandler(GameState _state)
     {
         switch(_state)
