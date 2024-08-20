@@ -6,8 +6,16 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPositions;
+<<<<<<< Updated upstream
     public List<Wave> _waves = new List<Wave>();
 
+=======
+    [HideInInspector]
+    public Wave _waves;
+    public EnemyLogic[] _enemies;
+    public int enemyPerWave = 1, enemyIncreasePerWave = 1, maxEnemyPerWave = 10;
+    public float timeToNextWave = 5, timeToNextSpawn = 1;
+>>>>>>> Stashed changes
     [Header("Time Variables")]
     [SerializeField] private float _countDown = 2;
     private int _currentWaveIndex = 0;
@@ -18,13 +26,20 @@ public class EnemySpawner : MonoBehaviour
     {
         _readyToCountDown = true;
 
+<<<<<<< Updated upstream
         for(int i = 0; i < _waves.Count; i++)
         {
             _waves[i]._enemiesLeft = _waves[i]._enemies.Count;
+=======
+        for(int i = 0; i < enemyPerWave; i++)
+        {
+            _waves._enemiesLeft = enemyPerWave;
+>>>>>>> Stashed changes
         }
     }
     private void Update()
     {
+<<<<<<< Updated upstream
         Debug.Log("wave index: " + _currentWaveIndex + " >= length" + _waves.Count + " = " + (_currentWaveIndex >= _waves.Count));
         //if we reach the last wave, add a new wave equal to the last one
         if(_currentWaveIndex + 1 > _waves.Count - 1)
@@ -36,6 +51,8 @@ public class EnemySpawner : MonoBehaviour
             } 
         }
 
+=======
+>>>>>>> Stashed changes
         if(_readyToCountDown == true)
         {
             _countDown -= Time.deltaTime;
@@ -43,15 +60,17 @@ public class EnemySpawner : MonoBehaviour
         if(_countDown <= 0 )
         {
             _readyToCountDown = false;
-            _countDown = _waves[_currentWaveIndex]._timeToNextWave;
+            _countDown = timeToNextWave;
 
             StartCoroutine(SpawnWave());
         }
 
         //if there are no more enemies within the wave, start countdown for a new wave and go to the next wave
-        if(_waves[_currentWaveIndex]._enemiesLeft == 0)
+        //end wave check
+        if(_waves._enemiesLeft == 0)
         {
             _readyToCountDown = true;
+<<<<<<< Updated upstream
             _currentWaveIndex++;
         }
     }
@@ -85,9 +104,31 @@ public class EnemySpawner : MonoBehaviour
                 
                 EnemyLogic enemyLogic = _waves[_currentWaveIndex]._enemies[i];
                 InstantiateEnemy(enemyLogic.EnemyType, chosenIndex);
-
-                yield return new WaitForSeconds(_waves[_currentWaveIndex]._timeToNextEnemy);
+=======
+            enemyPerWave += enemyIncreasePerWave;
+            if(enemyPerWave > maxEnemyPerWave)
+            {
+                enemyPerWave = maxEnemyPerWave;
             }
+            _waves._enemiesLeft = enemyPerWave;
+            Debug.Log("enemy left: " + _waves._enemiesLeft);
+        }
+    }
+
+
+    private IEnumerator SpawnWave()
+    {
+        for(int i = 0; i <  enemyPerWave; i++)
+        {
+            Debug.Log(i + " " + enemyPerWave);
+            int chosenIndex = Random.Range(0, _spawnPositions.Count);
+            int rand = Random.Range(0, _enemies.Length);
+>>>>>>> Stashed changes
+
+            EnemyLogic enemyLogic = _enemies[rand];
+            InstantiateEnemy(enemyLogic.EnemyType, chosenIndex);
+
+            yield return new WaitForSeconds(timeToNextSpawn);
         }
     }
     private void InstantiateEnemy(EnemyType enemyType, int chosenIndex)
