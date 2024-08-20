@@ -67,6 +67,7 @@ public class Entity : MonoBehaviour
 
         if (enemyType == EnemyType.shrink)
         {
+            if (IsNegativeScaled()) return;
             Vector3 newScale = transform.localScale * (1 + 1 / (damage * 2.5f));
 
             StartCoroutine(ScaleEnemy(newScale, scaleTiming));
@@ -104,6 +105,7 @@ public class Entity : MonoBehaviour
 
         if (enemyType == EnemyType.enlarge)
         {
+            if (IsNegativeScaled()) return;
             Vector3 newScale = transform.localScale / (1 + 1 / (damage * 2.5f));
 
             StartCoroutine(ScaleEnemy(newScale, scaleTiming));
@@ -148,5 +150,10 @@ public class Entity : MonoBehaviour
     public bool IsScaled()
     {
         return timesScaled == scaleRequired;
+    }
+
+    public bool IsNegativeScaled()
+    {
+        return timesScaled == -scaleRequired;
     }
 }
