@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
 
     [Tooltip("How many times should the enemy be scaled(in the correct type) before being vulnerable?")]
     [SerializeField] int scaleRequired = 4;
+    private Vector3 originalSize;
     private int timesScaled;
 
     [SerializeField] public EnemyType enemyType = EnemyType.normal;
@@ -43,8 +44,16 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        timesScaled = 0;
+        transform.localScale = originalSize;
+        health = StartingHealth;
+    }
+
     private void Start()
     {
+        originalSize = transform.localScale;
         _enemySpawner = GetComponentInParent<EnemySpawner>();
         health = StartingHealth;
     }

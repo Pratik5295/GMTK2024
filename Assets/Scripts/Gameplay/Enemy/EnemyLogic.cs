@@ -62,7 +62,8 @@ public class EnemyLogic : MonoBehaviour
     }
     private void Attack()
     {
-        _capsuleCollider.isTrigger = true;
+        //_capsuleCollider.isTrigger = true;
+        //_capsuleCollider.excludeLayers = LayerMask.NameToLayer("Player");
         _agent.speed = 0;
         _hasAttacked = true;
         Observer.Instance.EnemyAttack(gameObject);
@@ -72,7 +73,8 @@ public class EnemyLogic : MonoBehaviour
     }
     private void ResetAttack()
     {
-        _capsuleCollider.isTrigger = false;
+        //_capsuleCollider.isTrigger = false;
+        //_capsuleCollider.includeLayers = LayerMask.NameToLayer("Player");
         _agent.speed = _originalSpeed;
         _hasAttacked = false;
         Observer.Instance.EnemyAttackEnded(gameObject);
