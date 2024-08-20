@@ -37,6 +37,10 @@ public class CursorHandler : MonoBehaviour
             case GameState.GAME:
                 LockCursor();
                 break;
+
+            case GameState.GAMEOVER:
+                UnlockCursor();
+                break;
         }
     }
 

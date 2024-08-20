@@ -129,7 +129,7 @@ MonoBehaviour:
   _capsuleCollider: {fileID: 6608729983348137890}
   _enemyType: 0
   _attackStrategy: {fileID: 11400000, guid: 8cfbe85889619f14295e54c6af504a11, type: 2}
-  _damageDealt: 50
+  _damageDealt: 10
   _attackCooldown: 0.5
   _chargeUp: 0.25
 --- !u!114 &245505314944994127
@@ -147,6 +147,7 @@ MonoBehaviour:
   StartingHealth: 10
   scaleTiming: 0.3
   scaleRequired: 4
+  scoreGained: 20
   enemyType: 2
 --- !u!1001 &4465622423016631579
 PrefabInstance:

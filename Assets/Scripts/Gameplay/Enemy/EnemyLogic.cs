@@ -8,7 +8,6 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private EnemyType _enemyType;
-    //[SerializeField] private Transform _bulletSpawner;
     [SerializeField] private AttackStategy _attackStrategy;
 
     [SerializeField] private float _damageDealt = 1;
@@ -21,6 +20,7 @@ public class EnemyLogic : MonoBehaviour
     private bool _hasAttacked = false;
     private float _originalSpeed;
     public EnemyType EnemyType {get{return _enemyType;}}
+    public float DamageDealt {get{return _damageDealt;} set{_damageDealt = value;}}
     private void OnEnable()
     {
         _originalSpeed = _agent.speed;
@@ -85,10 +85,5 @@ public class EnemyLogic : MonoBehaviour
         _capsuleCollider.excludeLayers = _capsuleCollider.includeLayers;
         _agent.speed = _originalSpeed;
         _hasAttacked = false;
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Gizmos.DrawSphere(_bulletSpawner.transform.position, 0.5f);
     }
 }
