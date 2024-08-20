@@ -8,7 +8,7 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private EnemyType _enemyType;
-    [SerializeField] private Transform _bulletSpawner;
+    //[SerializeField] private Transform _bulletSpawner;
     [SerializeField] private AttackStategy _attackStrategy;
 
     [SerializeField] private float _damageDealt = 1;
@@ -89,6 +89,6 @@ public class EnemyLogic : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(_bulletSpawner.transform.position, 0.5f);
+        //Gizmos.DrawSphere(_bulletSpawner.transform.position, 0.5f);
     }
 }
