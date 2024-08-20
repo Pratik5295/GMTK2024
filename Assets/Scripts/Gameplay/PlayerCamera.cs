@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+    public static PlayerCamera _camera;
+
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
     [Tooltip("How low the player can look")]
@@ -13,10 +15,16 @@ public class PlayerCamera : MonoBehaviour
 
     [Tooltip("Keeps track of direction player is facing")]
     Transform orientation;
+    Transform model;
     GameObject player;
 
     float xRotation;
     float yRotation;
+
+    private void Awake()
+    {
+        if (_camera == null) _camera = this;
+    }
 
     void Start()
     {
@@ -24,6 +32,7 @@ public class PlayerCamera : MonoBehaviour
 
         player = PlayerMovement.player.gameObject;
         orientation = player.GetComponent<PlayerMovement>().orientation;
+        model = player.transform;
 
         if (GameManager.Instance == null)
         {
@@ -44,6 +53,7 @@ public class PlayerCamera : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, minLookDown, maxLookDown);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        model.rotation = Quaternion.Euler(0, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
 

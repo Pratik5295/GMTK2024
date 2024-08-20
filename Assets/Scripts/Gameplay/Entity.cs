@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] private float StartingHealth = 10f;
+    [SerializeField] private float StartingHealth = 1f;
     [Tooltip("In Seconds")][SerializeField] float scaleTiming = .3f;
     private float health;
     private EnemySpawner _enemySpawner;
-    [SerializeField] EnemyType enemyType = EnemyType.normal;
 
-    enum EnemyType
+    [Tooltip("How many times should the enemy be scaled(in the correct type) before being vulnerable?")]
+    [SerializeField] int scaleRequired = 4;
+    private Vector3 originalSize;
+    private int timesScaled;
+
+    [SerializeField] public EnemyType enemyType = EnemyType.normal;
+
+    public enum EnemyType
     {
         normal,
         enlarge,
@@ -26,57 +32,105 @@ public class Entity : MonoBehaviour
         }
         set
         {
-            if (enemyType != EnemyType.normal) return;
+            //if (enemyType != EnemyType.normal) return;
             health = value;
             //Debug.Log(health);
             if(health <= 0f)
             {
-                _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
+                if (_enemySpawner != null)
+                    _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
                 gameObject.SetActive(false);
             }
         }
     }
 
+    private void Awake()
+    {
+        originalSize = transform.localScale;
+    }
+
     private void Start()
     {
+        
         _enemySpawner = GetComponentInParent<EnemySpawner>();
+        health = StartingHealth;
+    }
+    private void OnEnable()
+    {
+        timesScaled = 0;
+        transform.localScale = originalSize;
         health = StartingHealth;
     }
 
     public void Enlarge(float damage)
     {
-        if (enemyType != EnemyType.enlarge) return;
 
-        health -= damage;
-
-        if (health <= 0f)
+        if (enemyType == EnemyType.shrink)
         {
-            _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
-            gameObject.SetActive(false);
+            if (IsNegativeScaled()) return;
+            Vector3 newScale = transform.localScale * (1 + 1 / (damage * 2.5f));
+
+            StartCoroutine(ScaleEnemy(newScale, scaleTiming));
+
+            timesScaled--;
+
+        }
+        else if (enemyType == EnemyType.enlarge)
+        {
+
+            /*health -= damage;
+
+            if (health <= 0f)
+            {
+                gameObject.SetActive(false);
+            }*/
+
+            if (IsScaled()) return;
+
+            Vector3 newScale = transform.localScale * (1 + 1 / (damage * 2.5f));
+
+            StartCoroutine(ScaleEnemy(newScale, scaleTiming));
+
+            timesScaled++;
+
         }
 
-        Vector3 newScale = transform.localScale * (1 + 1 / damage * 2.5f);
-
-        StartCoroutine(ScaleEnemy(newScale, .2f));
+        
 
         //transform.localScale = transform.localScale * (1 + 1/damage);
     }
 
     public void Shrink(float damage)
     {
-        if (enemyType != EnemyType.shrink) return;
 
-        health -= damage;
-        if (health <= 0f)
+        if (enemyType == EnemyType.enlarge)
         {
-            _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
-            gameObject.SetActive(false);
+            if (IsNegativeScaled()) return;
+            Vector3 newScale = transform.localScale / (1 + 1 / (damage * 2.5f));
+
+            StartCoroutine(ScaleEnemy(newScale, scaleTiming));
+
+            timesScaled--;
+        }
+        else if (enemyType == EnemyType.shrink)
+        {
+
+            /*health -= damage;
+
+            if (health <= 0f)
+            {
+                gameObject.SetActive(false);
+            }*/
+
+            if (IsScaled()) return;
+
+            Vector3 newScale = transform.localScale / (1 + 1 / (damage * 2.5f));
+
+            StartCoroutine(ScaleEnemy(newScale, scaleTiming));
+
+            timesScaled++;
         }
         
-        Vector3 newScale = transform.localScale / (1 + 1 / damage * 2.5f);
-
-        StartCoroutine(ScaleEnemy(newScale, .2f));
-        //transform.localScale = transform.localScale / (1 + 1 / damage);
     }
 
     IEnumerator ScaleEnemy(Vector3 scale, float time)
@@ -91,8 +145,15 @@ public class Entity : MonoBehaviour
             yield return null;
         }
         
-
-        
     }
 
+    public bool IsScaled()
+    {
+        return timesScaled == scaleRequired;
+    }
+
+    public bool IsNegativeScaled()
+    {
+        return timesScaled == -scaleRequired;
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationTrigger : MonoBehaviour
 {
     public Animator armAC, gunAC, armorAC, spiderAC;
-    public bool isFiring, isReloading;
+    public bool isPlayerActing;
     public bool isWalking, isAttacking, isAttackingAlt;
     // Update is called once per frame
     void Update()
@@ -16,7 +16,7 @@ public class AnimationTrigger : MonoBehaviour
 
     public void PlayerCheck()
     {
-        if (!isFiring && !isReloading)
+        if (!isPlayerActing)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -25,6 +25,10 @@ public class AnimationTrigger : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 StartCoroutine(Fire());
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(Punch());
             }
         }
     }
@@ -52,14 +56,15 @@ public class AnimationTrigger : MonoBehaviour
 
     public IEnumerator Reload()
     {
-        isReloading = true;
+        isPlayerActing = true;
         armAC.SetBool("fire", false);
         armAC.SetBool("reload", true);
+        armAC.SetBool("punch", false);
         gunAC.SetBool("reload", true);
 
         yield return new WaitForSeconds(3.5f);
 
-        isReloading = false;
+        isPlayerActing = false;
         armAC.SetBool("reload", false);
         gunAC.SetBool("reload", false);
     }
@@ -67,15 +72,32 @@ public class AnimationTrigger : MonoBehaviour
 
     public IEnumerator Fire()
     {
-        isFiring = true;
+        isPlayerActing = true;
         armAC.SetBool("fire", true);
         armAC.SetBool("reload", false);
+        armAC.SetBool("punch", false);
         gunAC.SetBool("reload", false);
 
         yield return new WaitForSeconds(0.5f);
 
-        isFiring = false;
+        isPlayerActing = false;
         armAC.SetBool("fire", false);
+    }
+
+
+    public IEnumerator Punch()
+    {
+        isPlayerActing = true;
+        armAC.SetBool("fire", false);
+        armAC.SetBool("reload", false);
+        armAC.SetBool("punch", true);
+        gunAC.SetBool("reload", false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        isPlayerActing = false;
+        armAC.SetBool("fire", false);
+        armAC.SetBool("punch", false);
     }
 
 

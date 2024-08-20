@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float health;
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float health = 5f;
+    [SerializeField] private float maxHealth = 5f;
     [SerializeField] private bool isAlive;
+    [SerializeField] private bool invincible;
 
     public Action OnPlayerDeathEvent;
     public Action<float,float> OnPlayerDamageEvent;
@@ -19,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
         health = maxHealth;
 
         isAlive = IsAlive();
+
+        GameManager.Instance.SetPlayer(this);
     }
 
     private bool IsAlive()
@@ -28,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReduceHealth(float amount)
     {
-        if (!IsAlive()) return;
+        if (!IsAlive() || invincible) return;
 
         health -= amount;
         OnPlayerDamageEvent?.Invoke(health,maxHealth);

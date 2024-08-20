@@ -20,7 +20,14 @@ public class GameManager : MonoBehaviour
 
     public Action<GameState> OnStateChanged;
     public GameState State => state;
-    public bool IsPaused => isPaused;   
+    public bool IsPaused => isPaused;
+
+    [SerializeField] private PlayerHealth player;
+
+    //Score system section
+    [SerializeField] private int score;
+    public int Score => score;
+    public Action<int> OnScoreChangeEvent;
 
     private void Awake()
     {
@@ -52,6 +59,8 @@ public class GameManager : MonoBehaviour
     {
         //Will be fired when the player has died
         SetState(GameState.GAMEOVER);
+
+        Time.timeScale = 0f;
     }
 
     public void PauseGame()
@@ -74,4 +83,28 @@ public class GameManager : MonoBehaviour
     {
         SetState(GameState.DEFAULT);
     }
+
+    public void SetPlayer(PlayerHealth _player)
+    {
+        player = _player;
+        player.OnPlayerDeathEvent += OnPlayerDeathEventHandler;
+    }
+
+    private void OnPlayerDeathEventHandler()
+    {
+        player.OnPlayerDeathEvent -= OnPlayerDeathEventHandler;
+
+        GameOver();
+    }
+
+
+    #region Score System Section
+
+    public void AddScore(int _amount)
+    {
+        score += _amount;
+        OnScoreChangeEvent?.Invoke(score);
+    }
+
+    #endregion
 }
