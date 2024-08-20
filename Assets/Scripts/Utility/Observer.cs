@@ -19,10 +19,9 @@ public class Observer : MonoBehaviour
         }
     }
     public event EventHandler<EnemyEventArgs> OnEnemyAttackEvent;
-    //public event EventHandler<EnemyEventArgs> OnAttackEndedEvent;
     public event EventHandler<EnemyEventArgs> OnEnemyChaseEvent;
-    public event EventHandler<EnemyEventArgs> OnEnemyDeathEvent;
     public event EventHandler<EnemyEventArgs> OnWaitingToAttack;
+    public event EventHandler<EnemyEventArgs> OnAttackEnded;
     public void EnemyAttack(GameObject enemyObj)
     {
         OnEnemyAttackEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
@@ -31,16 +30,12 @@ public class Observer : MonoBehaviour
     {
         OnWaitingToAttack?.Invoke(this, new EnemyEventArgs(enemyObj));
     }
-    public void EnemyAttackEnded(GameObject enemyObj)
-    {
-        OnEnemyAttackEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
-    }
     public void EnemyChase(GameObject enemyObj)
     {
         OnEnemyChaseEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
     }
-    public void EnemyDeath(GameObject enemyObj)
+    public void AttackEnded(GameObject enemyObj)
     {
-        OnEnemyDeathEvent?.Invoke(this, new EnemyEventArgs(enemyObj));
+        OnAttackEnded?.Invoke(this, new EnemyEventArgs(enemyObj));
     }
 }

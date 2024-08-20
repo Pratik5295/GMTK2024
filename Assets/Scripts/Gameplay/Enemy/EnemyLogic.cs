@@ -24,16 +24,22 @@ public class EnemyLogic : MonoBehaviour
     private void OnEnable()
     {
         _originalSpeed = _agent.speed;
+        _chaseTimer = 0;
+        _hasAttacked = false;
         _attackStrategy = Instantiate(_attackStrategy);
         _originalSize = transform.localScale;
         transform.localScale = _originalSize;
+        _agent.speed = _originalSpeed;
     }
     private void Start()
     {
+        _chaseTimer = 0;
+        _hasAttacked = false;
         _originalSpeed = _agent.speed;
         _attackStrategy = Instantiate(_attackStrategy);
         _originalSize = transform.localScale;
         transform.localScale = _originalSize;
+        _agent.speed = _originalSpeed;
     }
     private void Update()
     {
@@ -49,7 +55,7 @@ public class EnemyLogic : MonoBehaviour
                     _agent.SetDestination(PlayerMovement.player.transform.position);
                     if(_hasAttacked == false) Observer.Instance.EnemyChase(gameObject);
                 }
-                if(_agent.enabled && _agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked)
+                if(AttackConditionsWereMet())
                 {
                     Observer.Instance.WaitToAttack(gameObject);
                     Invoke("WaitToAttack", _chargeUp);
@@ -57,6 +63,7 @@ public class EnemyLogic : MonoBehaviour
             }
         }
     }
+    private bool AttackConditionsWereMet() => _agent.enabled && _agent.isOnNavMesh && _agent.remainingDistance <= _agent.stoppingDistance && !_hasAttacked;
     private void WaitToAttack()
     {
         _agent.speed = 0;
@@ -64,22 +71,20 @@ public class EnemyLogic : MonoBehaviour
     }
     private void Attack()
     {
-        //_capsuleCollider.isTrigger = true;
         _capsuleCollider.excludeLayers = LayerMask.GetMask("Player");
+        Transform currentPlayerPosition = PlayerMovement.player.transform;
         _agent.speed = 0;
         _hasAttacked = true;
         Observer.Instance.EnemyAttack(gameObject);
-        _attackStrategy.Attack(new AttackStategyParamethers(_agent, _bulletSpawner, PlayerMovement.player.transform, _damageDealt, this));
-        Invoke("ResetAttack", _attackCooldown);
+        _attackStrategy.Attack(new AttackStategyParamethers(_agent, currentPlayerPosition, _damageDealt, this));
+        if(gameObject.activeSelf) Invoke("ResetAttack", _attackCooldown);
         
     }
     private void ResetAttack()
     {
-        //_capsuleCollider.isTrigger = false;
         _capsuleCollider.excludeLayers = _capsuleCollider.includeLayers;
         _agent.speed = _originalSpeed;
         _hasAttacked = false;
-        Observer.Instance.EnemyAttackEnded(gameObject);
     }
     private void OnDrawGizmos()
     {
