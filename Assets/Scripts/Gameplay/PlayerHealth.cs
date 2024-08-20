@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float maxHealth = 5f;
     [SerializeField] private bool isAlive;
     [SerializeField] private bool invincible;
+    [SerializeField] private bool wasJustHit = false;
+    [SerializeField] private float invincibilityDuration = 0.5f;
+    [SerializeField] private float invincibilityTimer = 0.5f;
+
 
     public Action OnPlayerDeathEvent;
     public Action<float,float> OnPlayerDamageEvent;
@@ -16,12 +20,32 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        maxHealth = MetaConstants.MaxPlayerHealth;
         health = maxHealth;
 
+        invincibilityTimer = invincibilityDuration;
+
         isAlive = IsAlive();
+        wasJustHit = false;
 
         GameManager.Instance.SetPlayer(this);
+    }
+
+
+    private void Update()
+    {
+        if (wasJustHit) 
+        {
+            if (invincibilityTimer > 0)
+            {
+                invincibilityTimer -= Time.deltaTime;
+            }
+            else if (invincibilityTimer <= 0)
+            {
+                wasJustHit= false;
+                invincible = false;
+                invincibilityTimer = invincibilityDuration;
+            }
+        }
     }
 
     private bool IsAlive()
@@ -31,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReduceHealth(float amount)
     {
+        Debug.Log(amount);
         if (!IsAlive() || invincible) return;
 
         health -= amount;
@@ -40,6 +65,11 @@ public class PlayerHealth : MonoBehaviour
         {
             isAlive = false;
             OnPlayerDeathEvent?.Invoke();
+        }
+        else
+        {
+            invincible = true;
+            wasJustHit = true;
         }
     }
 

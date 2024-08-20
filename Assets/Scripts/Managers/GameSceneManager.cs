@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum SceneEnum
 {
@@ -61,6 +62,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        GameManager.Instance.ResetScore();
         Scene gameScene = SceneManager.GetActiveScene();
 
         SceneManager.LoadScene(gameScene.name);
