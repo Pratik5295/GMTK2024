@@ -254,9 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stompDamage: 1
-  punchSound: {fileID: 0}
-  successfulHitSound: {fileID: 0}
-  failedHitSound: {fileID: 0}
+  successfulHitSound: {fileID: 8300000, guid: 2a3a69801c2e4444a9e98be7e8ea91a1, type: 3}
 --- !u!1 &3186593312873579732
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,10 +366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d2e46d680013e41953f40b4d4331da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
-  maxHealth: 5
-  isAlive: 0
-  invincible: 1
+  health: 100
+  maxHealth: 100
+  isAlive: 1
+  invincible: 0
+  wasJustHit: 0
+  invincibilityDuration: 0.5
+  invincibilityTimer: 0.5
 --- !u!1 &7125607758359659598
 GameObject:
   m_ObjectHideFlags: 0

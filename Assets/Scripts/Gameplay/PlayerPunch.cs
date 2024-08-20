@@ -68,6 +68,14 @@ public class PlayerPunch : MonoBehaviour
         currentCooldown -= Time.deltaTime;
     }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if (!col.gameObject.CompareTag("Enemy") && isPunching)
+        {
+            if (failedHitSound != null) AudioManager.Instance.PlayForeground(failedHitSound);
+        }
+    }
+
     void OnTriggerStay(Collider col)
     {
         //Debug.Log("On Trigger");
@@ -93,11 +101,6 @@ public class PlayerPunch : MonoBehaviour
             }
             return;
         }
-        if (isPunching)
-        {
-            if (failedHitSound != null) AudioManager.Instance.PlayForeground(failedHitSound);
-        }
-            
     }
 
     IEnumerator Punch()
