@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 899091992203296940}
   - component: {fileID: 3961749671663836550}
   - component: {fileID: 5843370484555059345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 6836163023045468577}
   - component: {fileID: 6304338348935847728}
   - component: {fileID: 3582240443779045130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 777014529522225384}
   - component: {fileID: 1668492321530211288}
   - component: {fileID: 7589966025551842865}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object059
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,6 +1070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818272736146687012}
+  - component: {fileID: 8304333782514677004}
   m_Layer: 0
   m_Name: arena_final
   m_TagString: Untagged
@@ -1828,7 +1829,7 @@ GameObject:
   - component: {fileID: 306535114071236141}
   - component: {fileID: 6995621740046994366}
   - component: {fileID: 8254312042018740827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object060
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2359,7 +2360,8 @@ GameObject:
   - component: {fileID: 571188426689578954}
   - component: {fileID: 8922696474746153884}
   - component: {fileID: 4249610459734801776}
-  m_Layer: 0
+  - component: {fileID: 5114416011794932757}
+  m_Layer: 6
   m_Name: arena_ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2677,7 +2679,7 @@ GameObject:
   - component: {fileID: 2122838122092653138}
   - component: {fileID: 4211158937974537313}
   - component: {fileID: 4456556283655003207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Object049
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4162,7 +4164,7 @@ GameObject:
   - component: {fileID: 2836251159599154513}
   - component: {fileID: 2913783140246714345}
   - component: {fileID: 5111140862728861193}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6007,5 +6009,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5974849273272598353, guid: f451527e8080eaa41a0f9d9905a0f7e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8304333782514677004}
+    - targetCorrespondingSourceObject: {fileID: 7020484180100375450, guid: f451527e8080eaa41a0f9d9905a0f7e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5114416011794932757}
   m_SourcePrefab: {fileID: 100100000, guid: f451527e8080eaa41a0f9d9905a0f7e9, type: 3}
+--- !u!114 &8304333782514677004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303514550206586056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.033333335
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 9dec2431ba8985a4f82b1f7c5208eb21, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!114 &5114416011794932757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4145645484593169658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.033333335
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: afba73e68be31a54883bb9ebcada48a6, type: 2}
+  m_BuildHeightMesh: 0
