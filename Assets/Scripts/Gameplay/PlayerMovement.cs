@@ -228,6 +228,8 @@ public class PlayerMovement : MonoBehaviour
 
         // turn gravity off while on slope
         rb.useGravity = !OnSlope();
+        Debug.Log("On Slope" + OnSlope());
+        FindObjectOfType<Stomp1>().gameObject.SetActive(!OnSlope());
     }
 
     private void SpeedControl()
