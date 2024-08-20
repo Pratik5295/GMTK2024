@@ -41,6 +41,11 @@ public class AudioManager : MonoBehaviour
             backgroundSource.Stop();
         }
     }
+
+    public void SetBackgroundVolume(float volume)
+    {
+        backgroundSource.volume = volume;
+    }
     #endregion
 
 
