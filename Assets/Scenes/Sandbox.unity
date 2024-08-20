@@ -644,11 +644,11 @@ PrefabInstance:
     - target: {fileID: 9065189354206504668, guid: b0438ed6837119640b4bd407e6bcae0f, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: c21ca835d2085be4ea0f78217eb1e6dc, type: 2}
+      objectReference: {fileID: 11400000, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
     - target: {fileID: 9065189354206504668, guid: b0438ed6837119640b4bd407e6bcae0f, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5213976845937333821, guid: c21ca835d2085be4ea0f78217eb1e6dc, type: 2}
+      objectReference: {fileID: 4536887480961452444, guid: 4d9848cdc338cc945957b1bb9c27bd76, type: 2}
     - target: {fileID: 9065189354206504668, guid: b0438ed6837119640b4bd407e6bcae0f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
