@@ -125,10 +125,8 @@ public class ObjectPool : MonoBehaviour
 }
 public enum EnemyType 
 {
-    Basic,
-    Big,
-    Small,
-    Fast,
+    Armored,
+    Spider,
 }
 
 [System.Serializable]

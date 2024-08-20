@@ -4,9 +4,9 @@ using UnityEngine;
 public class EnemyVisual : MonoBehaviour, IObserverSubscriber
 {
     [SerializeField] private Animator _enemyAnimator;
-    private const string ATTACK_ALT = "attack alt";
-    private const string ATTACK = "attack";
-    private const string SPEED = "speed";
+    private const string ATTACK_ALT = "Attack_Alt";
+    private const string ATTACK = "Attack";
+    private const string ISWALKING = "IsWalking";
 
     public void EventSubscription()
     {
@@ -14,26 +14,16 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
         {
             Observer.Instance.OnEnemyAttackEvent += EnemyAttack;
             Observer.Instance.OnEnemyChaseEvent += EnemyChase;   
-            Observer.Instance.OnWaitingToAttack += WaitToAttack;     
-            //Observer.Instance.OnAttackEndedEvent += AttackEnded;  
+            Observer.Instance.OnWaitingToAttack += WaitToAttack;      
         }
     }
-
-    private void AttackEnded(object sender, Observer.EnemyEventArgs e)
-    {
-        if(e.EnemyObj == gameObject.transform.parent.gameObject)
-        {   
-            Debug.Log("attack animation should play");
-            _enemyAnimator.SetBool(ATTACK, false);
-        }
-    }
-
     public void OnDestroy()
     {
         if(Observer.Instance != null)
         {
             Observer.Instance.OnEnemyAttackEvent -= EnemyAttack;
-            Observer.Instance.OnEnemyChaseEvent -= EnemyChase;            
+            Observer.Instance.OnEnemyChaseEvent -= EnemyChase;
+            Observer.Instance.OnWaitingToAttack -= WaitToAttack;    
         }
     }
     private void Start()
@@ -45,26 +35,26 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
             int chosenAttack = UnityEngine.Random.Range(0, 2);
-            _enemyAnimator.SetBool(ATTACK, true);
-            //if(chosenAttack == 2) _enemyAnimator.SetBool(ATTACK_ALT, true);
+            if(chosenAttack == 1) _enemyAnimator.SetTrigger(ATTACK);
+            if(chosenAttack == 2) _enemyAnimator.SetTrigger(ATTACK_ALT);
+            Debug.Log("enemy attack being called");
         }
     }
     private void WaitToAttack(object sender, Observer.EnemyEventArgs e)
     {
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {
-            _enemyAnimator.SetFloat(SPEED, 0);
+            Debug.Log("wait to attack being called");
+            _enemyAnimator.SetBool(ISWALKING, false);
         }
     }
     private void EnemyChase(object sender, Observer.EnemyEventArgs e)
     {
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
-            //Debug.Log("chase animatin should play");
-            float speedValue = 1;
-
-            _enemyAnimator.SetBool(ATTACK, false);
-            _enemyAnimator.SetFloat(SPEED, speedValue);
-        }
+            _enemyAnimator.ResetTrigger(ATTACK);
+            _enemyAnimator.ResetTrigger(ATTACK_ALT);
+            _enemyAnimator.SetBool(ISWALKING, true);
+        } 
     }
 }
