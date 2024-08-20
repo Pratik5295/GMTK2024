@@ -35,8 +35,8 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
             int chosenAttack = UnityEngine.Random.Range(0, 2);
-            if(chosenAttack == 1) _enemyAnimator.SetTrigger(ATTACK);
-            if(chosenAttack == 2) _enemyAnimator.SetTrigger(ATTACK_ALT);
+            if(chosenAttack == 1) _enemyAnimator.SetBool(ATTACK, true);
+            if(chosenAttack == 2) _enemyAnimator.SetBool(ATTACK_ALT, true);
             Debug.Log("enemy attack being called");
         }
     }
@@ -52,8 +52,8 @@ public class EnemyVisual : MonoBehaviour, IObserverSubscriber
     {
         if(e.EnemyObj == gameObject.transform.parent.gameObject)
         {   
-            _enemyAnimator.ResetTrigger(ATTACK);
-            _enemyAnimator.ResetTrigger(ATTACK_ALT);
+            _enemyAnimator.SetBool(ATTACK, false);
+            _enemyAnimator.SetBool(ATTACK_ALT, false);
             _enemyAnimator.SetBool(ISWALKING, true);
         } 
     }
