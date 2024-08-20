@@ -129,7 +129,7 @@ MonoBehaviour:
   _capsuleCollider: {fileID: 6608729983348137890}
   _enemyType: 0
   _bulletSpawner: {fileID: 1916759138925271415}
-  _attackStrategy: {fileID: 0}
+  _attackStrategy: {fileID: 11400000, guid: 8cfbe85889619f14295e54c6af504a11, type: 2}
   _damageDealt: 50
   _attackCooldown: 3
   _chargeUp: 0.25
