@@ -612,7 +612,7 @@ MonoBehaviour:
   punchCooldown: 0.5
   punchTiming: 0.3
   punchFreezeTimeScale: 0.05
-  punchFreezeLength: 0.1
+  punchFreezeLength: 0.05
   canHold: 0
   punchSound: {fileID: 8300000, guid: a526569b964f4b34aa6d5fcee6dc7b09, type: 3}
   successfulHitSound: {fileID: 8300000, guid: 71e07b325de86ed4eabf74f7e50a6ccb, type: 3}
