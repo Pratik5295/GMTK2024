@@ -14,9 +14,9 @@ public class Entity : MonoBehaviour
     [SerializeField] int scaleRequired = 4;
     private int timesScaled;
 
-    [SerializeField] EnemyType enemyType = EnemyType.normal;
+    [SerializeField] public EnemyType enemyType = EnemyType.normal;
 
-    enum EnemyType
+    public enum EnemyType
     {
         normal,
         enlarge,
@@ -31,12 +31,13 @@ public class Entity : MonoBehaviour
         }
         set
         {
-            if (enemyType != EnemyType.normal) return;
+            //if (enemyType != EnemyType.normal) return;
             health = value;
             //Debug.Log(health);
             if(health <= 0f)
             {
-                _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
+                if (_enemySpawner != null)
+                    _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
                 gameObject.SetActive(false);
             }
         }
