@@ -38,7 +38,7 @@ public class Entity : MonoBehaviour
             if(health <= 0f)
             {
                 if (_enemySpawner != null)
-                    _enemySpawner._waves[_enemySpawner.CurrentWaveIndex]._enemiesLeft--;
+                    _enemySpawner._waves._enemiesLeft--;
                 gameObject.SetActive(false);
             }
         }
